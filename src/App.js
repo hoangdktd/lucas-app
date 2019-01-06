@@ -30,7 +30,6 @@ import { CategoryList, CategoryEdit, CategoryIcon } from './categories';
 import { ReviewList, ReviewEdit, ReviewIcon } from './reviews';
 
 import dataProviderFactory from './dataProvider';
-import fakeServerFactory from './fakeServer';
 
 const i18nProvider = locale => {
     if (locale === 'fr') {
@@ -45,19 +44,12 @@ class App extends Component {
     state = { dataProvider: null };
 
     async componentWillMount() {
-        this.restoreFetch = await fakeServerFactory(
-            process.env.REACT_APP_DATA_PROVIDER
-        );
 
         const dataProvider = await dataProviderFactory(
             process.env.REACT_APP_DATA_PROVIDER
         );
 
         this.setState({ dataProvider });
-    }
-
-    componentWillUnmount() {
-        this.restoreFetch();
     }
 
     render() {

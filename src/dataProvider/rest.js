@@ -1,7 +1,18 @@
-import simpleRestProvider from 'ra-data-simple-rest';
+import restEngine from '../utilities/restEngine';
+import { fetchUtils } from 'admin-on-rest';
+import { APIServer } from '../utilities/constant';
 
-const restProvider = simpleRestProvider('http://localhost:4000');
-export default (type, resource, params) =>
-    new Promise(resolve =>
-        setTimeout(() => resolve(restProvider(type, resource, params)), 500)
-    );
+const httpClient = (url, options = {}) => {
+    if (!options.headers) {
+        options.headers = new Headers({ Accept: 'application/json' });
+    }
+
+    const token = localStorage.getItem('token');
+    //options.headers.set('x-access-token', `Bearer ${token}`);
+    options.headers.set('x-access-token', token);
+    return fetchUtils.fetchJson(url, options);
+}
+
+const restClient = restEngine(APIServer, httpClient);
+export default (type, resource, params) => new Promise(resolve => setTimeout(() => resolve(restClient(type, resource, params)), 500));
+    
