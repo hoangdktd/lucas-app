@@ -44,7 +44,7 @@ export default (apiUrl, httpClient = fetchJson) => {
             }
             case GET_LIST: {
                 const { page, perPage } = params.pagination;
-                const { field, order } = params.sort;
+                const { field } = params.sort;
                 const query = {
                     ...params.filter,
                     sort: field,
@@ -61,7 +61,7 @@ export default (apiUrl, httpClient = fetchJson) => {
                 break;
             case GET_MANY_REFERENCE: {
                 const { page, perPage } = params.pagination;
-                const { field, order } = params.sort;
+                const { field } = params.sort;
                 const query = {
                     ...params.filter,
                     [params.target]: params.id,
@@ -119,7 +119,7 @@ export default (apiUrl, httpClient = fetchJson) => {
                     //data: json,
                     //total: parseInt(headers.get('x-total-count').split('/').pop(), 10),
                     data: json.data.map(object => {object.id = object._id; return object}),
-                    total: json.items.total
+                    total: json.total
                 };
             case CREATE:
                 return { data: { ...params.data, id: json.id } };

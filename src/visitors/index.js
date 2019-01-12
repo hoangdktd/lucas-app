@@ -75,23 +75,12 @@ export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
         perPage={25}
     >
         <Responsive
-            xsmall={<MobileGrid />}
             medium={
                 <Datagrid>
-                    <CustomerLinkField />
-                    <DateField source="last_seen" type="date" />
-                    <NumberField
-                        source="nb_commands"
-                        label="resources.customers.fields.commands"
-                        className={classes.nb_commands}
-                    />
-                    <ColoredNumberField
-                        source="total_spent"
-                        options={{ style: 'currency', currency: 'USD' }}
-                    />
-                    <DateField source="latest_purchase" showTime />
-                    <BooleanField source="has_newsletter" label="News." />
-                    <SegmentsField />
+                    <TextField source="displayName" />
+                    <TextField source="address" />
+                    <DateField source="birthday" type="date" />
+                    <ColoredNumberField source="totalSpent" />
                     <EditButton />
                 </Datagrid>
             }
@@ -106,6 +95,7 @@ const editStyles = {
     first_name: { display: 'inline-block' },
     last_name: { display: 'inline-block', marginLeft: 32 },
     email: { width: 544 },
+    displayName: { width: 544 },
     address: { maxWidth: 544 },
     zipcode: { display: 'inline-block' },
     city: { display: 'inline-block', marginLeft: 32 },
@@ -122,12 +112,8 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
         <TabbedForm>
             <FormTab label="resources.customers.tabs.identity">
                 <TextInput
-                    source="first_name"
-                    formClassName={classes.first_name}
-                />
-                <TextInput
-                    source="last_name"
-                    formClassName={classes.last_name}
+                    source="displayName"
+                    formClassName={classes.displayName}
                 />
                 <TextInput
                     type="email"
@@ -210,13 +196,12 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
         <TabbedForm>
             <FormTab label="resources.customers.tabs.identity">
                 <TextInput
-                    autoFocus
-                    source="first_name"
-                    formClassName={classes.first_name}
+                    source="displayName"
+                    formClassName={classes.displayName}
                 />
-                <TextInput
-                    source="last_name"
-                    formClassName={classes.last_name}
+                <LongTextInput
+                    source="address"
+                    formClassName={classes.address}
                 />
                 <TextInput
                     type="email"
@@ -226,14 +211,6 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.email}
                 />
                 <DateInput source="birthday" />
-            </FormTab>
-            <FormTab label="resources.customers.tabs.address" path="address">
-                <LongTextInput
-                    source="address"
-                    formClassName={classes.address}
-                />
-                <TextInput source="zipcode" formClassName={classes.zipcode} />
-                <TextInput source="city" formClassName={classes.city} />
             </FormTab>
         </TabbedForm>
     </Create>

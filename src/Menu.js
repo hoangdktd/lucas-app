@@ -16,6 +16,7 @@ import { CommandIcon } from './commands';
 import { ProductIcon } from './products';
 import { CategoryIcon } from './categories';
 import { ReviewIcon } from './reviews';
+import { UserIcon } from './users';
 
 const items = [
     { name: 'customers', icon: <VisitorIcon /> },
@@ -24,6 +25,7 @@ const items = [
     { name: 'products', icon: <ProductIcon /> },
     { name: 'categories', icon: <CategoryIcon /> },
     { name: 'reviews', icon: <ReviewIcon /> },
+    { name: 'user', icon: <UserIcon /> },
 ];
 
 const Menu = ({ onMenuClick, translate, logout }) => (

@@ -154,5 +154,25 @@ export default {
                 reviewer: 'Commentateur',
             },
         },
+        user: {
+            name: 'Users',
+            fields: {
+                customers: 'Users',
+                name: 'Name',
+            },
+            data: {
+                compulsive: 'Compulsive',
+                collector: 'Collector',
+                ordered_once: 'Ordered once',
+                regular: 'Regular',
+                returns: 'Returns',
+                reviewer: 'Reviewer',
+            },
+        },
     },
+    commons: {
+        roleAdmin: 'Admin(fr)',
+        roleUser: 'User(fr)',
+        roleManager: 'Manager(fr)',
+    }
 };

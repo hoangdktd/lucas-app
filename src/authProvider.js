@@ -14,12 +14,17 @@ console.log(params);
         const { username, password } = params;
         const request = new Request(APIServer + AuthApiUrl.API_AUTH_LOGIN, {
             method: 'POST',
-            body: JSON.stringify({ username, password }),
-            headers: new Headers({ 'Content-Type': 'application/json' }),
+            body: JSON.stringify({
+                'userId': username,
+                'password': password
+            }),
+            headers: new Headers({'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' }),
         })
         return fetch(request)
             .then(response => {
                 if (response.status < 200 || response.status >= 300) {
+                    console.log(response.msg);
+                    console.log(response.json().msg);
                     throw new Error(response.statusText);
                 }
                 return response.json();

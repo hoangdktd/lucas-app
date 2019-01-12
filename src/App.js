@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Admin, Resource } from 'react-admin';
+import { ListGuesser } from 'react-admin';
 import logo from './logo.svg';
 import './App.css';
 
@@ -28,6 +29,7 @@ import {
 } from './products';
 import { CategoryList, CategoryEdit, CategoryIcon } from './categories';
 import { ReviewList, ReviewEdit, ReviewIcon } from './reviews';
+import { UserList, UserEdit, UserCreate, UserIcon } from './users';
 
 import dataProviderFactory from './dataProvider';
 
@@ -111,6 +113,14 @@ class App extends Component {
                     edit={ReviewEdit}
                     icon={ReviewIcon}
                 />
+                <Resource
+                    name="user"
+                    list={UserList}
+                    edit={UserEdit}
+                    create={UserCreate}
+                    icon={UserIcon}
+                />
+                <Resource name="users1" list={ListGuesser} />
             </Admin>
         );
     }
