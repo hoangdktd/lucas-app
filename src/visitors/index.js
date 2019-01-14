@@ -41,7 +41,6 @@ const VisitorFilter = props => (
         <DateInput source="last_seen_gte" />
         <NullableBooleanInput source="has_ordered" />
         <NullableBooleanInput source="has_newsletter" defaultValue />
-        <SegmentInput />
     </Filter>
 );
 
@@ -71,7 +70,7 @@ export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
     <List
         {...props}
         filters={<VisitorFilter />}
-        sort={{ field: 'last_seen', order: 'DESC' }}
+        sort={{ field: 'displayName', order: 'DESC' }}
         perPage={25}
     >
         <Responsive
@@ -172,7 +171,6 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                 </ReferenceManyField>
             </FormTab>
             <FormTab label="resources.customers.tabs.stats" path="stats">
-                <SegmentsInput />
                 <NullableBooleanInput source="has_newsletter" />
                 <DateField
                     source="first_seen"
