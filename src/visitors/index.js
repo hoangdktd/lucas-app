@@ -38,9 +38,9 @@ export const VisitorIcon = Icon;
 const VisitorFilter = props => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
-        <DateInput source="last_seen_gte" />
-        <NullableBooleanInput source="has_ordered" />
-        <NullableBooleanInput source="has_newsletter" defaultValue />
+        <SearchInput source="displayName" />
+        <SearchInput source="address" />
+        <DateInput source="birthday" />
     </Filter>
 );
 
@@ -76,12 +76,13 @@ export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
         <Responsive
             medium={
                 <Datagrid>
-                    <TextField source="displayName" />
-                    <TextField source="address" />
-                    <DateField source="birthday" type="date" />
-                    <ColoredNumberField source="totalSpent" />
-                    <EditButton />
-                </Datagrid>
+                <TextField source="displayName" />
+                <TextField source="customerId" />
+                <TextField source="address" />
+                <DateField source="birthday" type="date" />
+                <ColoredNumberField source="totalSpent" />
+                <EditButton />
+            </Datagrid>
             }
         />
     </List>
@@ -115,6 +116,9 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.displayName}
                 />
                 <TextInput
+                    source="customerId"
+                />
+                <TextInput
                     type="email"
                     source="email"
                     validation={{ email: true }}
@@ -128,10 +132,10 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     source="address"
                     formClassName={classes.address}
                 />
-                <TextInput source="zipcode" formClassName={classes.zipcode} />
-                <TextInput source="city" formClassName={classes.city} />
+                {/* <TextInput source="zipcode" formClassName={classes.zipcode} />
+                <TextInput source="city" formClassName={classes.city} /> */}
             </FormTab>
-            <FormTab label="resources.customers.tabs.orders" path="orders">
+            {/* <FormTab label="resources.customers.tabs.orders" path="orders">
                 <ReferenceManyField
                     addLabel={false}
                     sort={{ field: 'date', order: 'DESC' }}
@@ -169,8 +173,8 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         <EditButton style={{ padding: 0 }} />
                     </Datagrid>
                 </ReferenceManyField>
-            </FormTab>
-            <FormTab label="resources.customers.tabs.stats" path="stats">
+            </FormTab> */}
+            {/* <FormTab label="resources.customers.tabs.stats" path="stats">
                 <NullableBooleanInput source="has_newsletter" />
                 <DateField
                     source="first_seen"
@@ -184,7 +188,7 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     source="last_seen"
                     style={{ width: 128, display: 'inline-block' }}
                 />
-            </FormTab>
+            </FormTab> */}
         </TabbedForm>
     </Edit>
 ));
@@ -197,9 +201,8 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     source="displayName"
                     formClassName={classes.displayName}
                 />
-                <LongTextInput
-                    source="address"
-                    formClassName={classes.address}
+                <TextInput
+                    source="customerId"
                 />
                 <TextInput
                     type="email"
@@ -209,6 +212,12 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.email}
                 />
                 <DateInput source="birthday" />
+            </FormTab>
+            <FormTab label="resources.customers.tabs.address" path="address">
+                <LongTextInput
+                    source="address"
+                    formClassName={classes.address}
+                />
             </FormTab>
         </TabbedForm>
     </Create>

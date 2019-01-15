@@ -129,7 +129,7 @@ export default (apiUrl, httpClient = fetchJson) => {
             case GET_ONE:
             default:
                 console.log(json);
-                return { data: { ...json, id: json._id} };
+                return { data: { ...json, id: json.id} };
         }
     };
 
