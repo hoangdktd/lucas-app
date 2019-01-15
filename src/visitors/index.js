@@ -39,8 +39,7 @@ const VisitorFilter = props => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
         <SearchInput source="displayName" />
-        <SearchInput source="address" />
-        <DateInput source="birthday" />
+        <SearchInput source="customerIdentity" />
     </Filter>
 );
 
@@ -77,7 +76,7 @@ export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
             medium={
                 <Datagrid>
                 <TextField source="displayName" />
-                <TextField source="customerId" />
+                <TextField source="customerIdentity" />
                 <TextField source="address" />
                 <DateField source="birthday" type="date" />
                 <ColoredNumberField source="totalSpent" />
@@ -116,7 +115,7 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.displayName}
                 />
                 <TextInput
-                    source="customerId"
+                    source="customerIdentity"
                 />
                 <TextInput
                     type="email"
@@ -202,7 +201,7 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.displayName}
                 />
                 <TextInput
-                    source="customerId"
+                    source="customerIdentity"
                 />
                 <TextInput
                     type="email"
