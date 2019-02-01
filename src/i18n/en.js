@@ -142,8 +142,9 @@ export default {
         user: {
             name: 'Users',
             fields: {
-                customers: 'Users',
+                username: 'User Name',
                 name: 'Name',
+                userid: 'User ID'
             },
             data: {
                 compulsive: 'Compulsive',

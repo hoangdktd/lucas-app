@@ -13,13 +13,15 @@ import {
     Pagination,
     ReferenceInput,
     ReferenceManyField,
-    SearchInput,
     SelectInput,
-    TabbedForm,
     TextField,
     TextInput,
     SimpleForm,
     required,
+    Responsive,
+    SearchInput,
+    DateInput,
+    TabbedForm
 } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -30,6 +32,7 @@ import RichTextInput from 'ra-input-rich-text';
 // import StarRatingField from '../reviews/StarRatingField';
 import GridList from './GridList';
 // import Poster from './Poster';
+import FullNameField from './FullNameField';
 
 export const UserIcon = Icon;
 
@@ -48,75 +51,60 @@ const QuickFilter = translate(
 export const UserFilter = props => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
-        <ReferenceInput
-            source="category_id"
-            reference="categories"
-            sort={{ field: 'id', order: 'ASC' }}
-        >
-            <SelectInput source="name" />
-        </ReferenceInput>
-        <NumberInput source="width_gte" />
-        <NumberInput source="width_lte" />
-        <NumberInput source="height_gte" />
-        <NumberInput source="height_lte" />
-        <QuickFilter
-            label="resources.products.fields.stock_lte"
-            source="stock_lte"
-            defaultValue={10}
+        <SearchInput source="userId" label="resources.user.fields.userid"/>
+        <SearchInput
+            label="resources.user.fields.username"
+            source="displayName"
         />
     </Filter>
 );
 
-export const UserList = props => (
+// export const UserList = props => (
+//     <List
+//         {...props}
+//         filters={<UserFilter />}
+//         perPage={20}
+//         sort={{ field: 'id', order: 'ASC' }}
+//     >
+//         <GridList />
+//     </List>
+// );
+
+
+const listStyles = {
+    nb_commands: { color: 'purple' },
+};
+
+export const UserList = withStyles(listStyles)(({ classes, ...props }) => (
     <List
         {...props}
         filters={<UserFilter />}
-        perPage={20}
-        sort={{ field: 'id', order: 'ASC' }}
+        sort={{ field: 'displayName', order: 'DESC' }}
+        perPage={25}
     >
-        <GridList />
+        <Responsive
+            medium={
+                <Datagrid>
+                <TextField source="displayName" />
+                <TextField source="userId" />
+                <TextField source="email" />
+                <TextField source="userType" />
+                <DateField source="createdAt" type="date" />
+                <EditButton />
+            </Datagrid>
+            }
+        />
     </List>
-);
-
-const createStyles = {
-    userId: { width: '5em' },
-    password: { width: '5em' }
-};
-
-export const UserCreate = withStyles(createStyles)(
-    ({ classes, translate, ...props }) => (
-        <Create {...props}>
-            <SimpleForm>
-                <TextInput
-                    autoFocus
-                    validate={required()}
-                    source="userId"
-                    className={classes.userId}
-                />
-                <TextInput
-                    validate={required()}
-                    source="password"
-                    type="password"
-                    className={classes.password}
-                />
-                <SelectInput
-                    source="userRole"
-                    choices={[
-                        { id: '1', name: 'commons.roleAdmin'},
-                        { id: '2', name: 'commons.roleManager'},
-                        { id: '3', name: 'commons.roleUser'},
-                    ]}
-                    translateChoice={true}
-                />
-            </SimpleForm>
-        </Create>
-    )
-);
-
-const ProductTitle = ({ record }) => <span>Poster #{record.reference}</span>;
+));
 
 const editStyles = {
-    ...createStyles,
+    first_name: { display: 'inline-block' },
+    last_name: { display: 'inline-block', marginLeft: 32 },
+    email: { width: 544 },
+    displayName: { width: 544 },
+    address: { maxWidth: 544 },
+    zipcode: { display: 'inline-block' },
+    city: { display: 'inline-block', marginLeft: 32 },
     comment: {
         maxWidth: '20em',
         overflow: 'hidden',
@@ -125,55 +113,83 @@ const editStyles = {
     },
 };
 
-export const UserEdit = withStyles(editStyles)(({ classes, ...props }) => (
-    <Edit {...props} title={<ProductTitle />}>
+export const UserCreate = withStyles(editStyles)(({ classes, ...props }) => (
+    <Create {...props}>
         <TabbedForm>
-            <FormTab label="resources.products.tabs.image">
-                <TextInput source="image" options={{ fullWidth: true }} />
-                <TextInput source="thumbnail" options={{ fullWidth: true }} />
-            </FormTab>
-            <FormTab label="resources.products.tabs.details" path="details">
-                <TextInput source="reference" />
-                <NumberInput source="price" className={classes.price} />
-                <NumberInput
-                    source="width"
-                    className={classes.width}
-                    formClassName={classes.widthFormGroup}
+            <FormTab label="resources.customers.tabs.identity">
+                <TextInput
+                    source="displayName"
+                    formClassName={classes.displayName}
                 />
-                <NumberInput
-                    source="height"
-                    className={classes.height}
-                    formClassName={classes.heightFormGroup}
+                <TextInput
+                    source="userId"
+                    label="User ID"
                 />
-                <ReferenceInput source="category_id" reference="categories">
-                    <SelectInput source="name" />
-                </ReferenceInput>
-                <NumberInput source="stock" className={classes.stock} />
+                <SelectInput
+                    source="userRole"
+                    choices={[
+                        {id: 1, name: 'commons.roleManager'},
+                        {id: 2, name: 'commons.roleUser'}
+                    ]}
+                    translateChoice={true}
+                />
+                <TextInput
+                    type="email"
+                    source="email"
+                    validation={{ email: true }}
+                    fullWidth={true}
+                    formClassName={classes.email}
+                />
+                {/* <DateInput source="createdAt" /> */}
             </FormTab>
-            <FormTab
-                label="resources.products.tabs.description"
-                path="description"
-            >
-                <RichTextInput source="description" addLabel={false} />
+            {/* <FormTab label="resources.customers.tabs.address" path="address">
+                <LongTextInput
+                    source="address"
+                    formClassName={classes.address}
+                />
+            </FormTab> */}
+        </TabbedForm>
+    </Create>
+));
+
+const VisitorTitle = ({ record }) =>
+record ? <FullNameField record={record} size={32} /> : null;
+
+export const UserEdit = withStyles(editStyles)(({ classes, ...props }) => (
+    <Edit title={<VisitorTitle />} {...props}>
+        <TabbedForm>
+            <FormTab label="resources.customers.tabs.identity">
+                <TextInput
+                    source="displayName"
+                    formClassName={classes.displayName}
+                />
+                <TextInput
+                    source="userId"
+                    label="User ID"
+                />
+                <SelectInput
+                    source="userRole"
+                    choices={[
+                        {id: 1, name: 'commons.roleManager'},
+                        {id: 2, name: 'commons.roleUser'}
+                    ]}
+                    translateChoice={true}
+                />
+                <TextInput
+                    type="email"
+                    source="email"
+                    validation={{ email: true }}
+                    fullWidth={true}
+                    formClassName={classes.email}
+                />
+                {/* <DateInput source="birthday" /> */}
             </FormTab>
-            <FormTab label="resources.products.tabs.reviews" path="reviews">
-                <ReferenceManyField
-                    reference="reviews"
-                    target="product_id"
-                    addLabel={false}
-                    pagination={<Pagination />}
-                >
-                    <Datagrid>
-                        <DateField source="date" />
-                        <TextField
-                            source="comment"
-                            cellClassName={classes.comment}
-                        />
-                        <TextField source="status" />
-                        <EditButton />
-                    </Datagrid>
-                </ReferenceManyField>
-            </FormTab>
+            {/* <FormTab label="resources.customers.tabs.address" path="address">
+                <LongTextInput
+                    source="address"
+                    formClassName={classes.address}
+                />
+            </FormTab> */}
         </TabbedForm>
     </Edit>
 ));

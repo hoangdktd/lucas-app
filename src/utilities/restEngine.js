@@ -7,6 +7,7 @@ import {
     CREATE,
     UPDATE,
     DELETE,
+    DELETE_MANY,
     fetchUtils,
 } from 'admin-on-rest';
 
@@ -91,6 +92,12 @@ export default (apiUrl, httpClient = fetchJson) => {
                 url = `${apiUrl}/${resource}/${params.id}`;
                 options.method = 'DELETE';
                 console.log('DELETE : ' + url);
+                break;
+            case 'DELETE_MANY':
+                url = `${apiUrl}/${resource}`;
+                options.method = 'DELETE';
+                options.body = JSON.stringify(params.data);
+                console.log('DELETE_MANY : ' + url);
                 break;
             default:
                 throw new Error(`Unsupported fetch action type ${type}`);
