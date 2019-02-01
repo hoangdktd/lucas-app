@@ -20,7 +20,7 @@ import {
     VisitorCreate,
     VisitorIcon,
 } from './visitors';
-import { CommandList, CommandEdit, CommandIcon } from './commands';
+import { CommandList, CommandEdit, CommandCreate, CommandIcon } from './commands';
 import {
     ProductList,
     ProductCreate,
@@ -88,9 +88,10 @@ class App extends Component {
                     icon={VisitorIcon}
                 />
                 <Resource
-                    name="commands"
+                    name="order"
                     list={CommandList}
                     edit={CommandEdit}
+                    create={CommandCreate}
                     icon={CommandIcon}
                     options={{ label: 'Orders' }}
                 />
