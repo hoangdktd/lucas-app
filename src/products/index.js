@@ -19,6 +19,7 @@ import {
     TextField,
     TextInput,
     required,
+    Responsive,
 } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -47,7 +48,8 @@ const QuickFilter = translate(
 export const ProductFilter = props => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
-        <ReferenceInput
+        <NumberInput source="price" />
+        {/* <ReferenceInput
             source="category_id"
             reference="categories"
             sort={{ field: 'id', order: 'ASC' }}
@@ -62,18 +64,37 @@ export const ProductFilter = props => (
             label="resources.products.fields.stock_lte"
             source="stock_lte"
             defaultValue={10}
-        />
+        /> */}
     </Filter>
 );
 
 export const ProductList = props => (
+    // <List
+    //     {...props}
+    //     filters={<ProductFilter />}
+    //     perPage={20}
+    //     sort={{ field: 'id', order: 'ASC' }}
+    // >
+    //     <GridList />
+    // </List>
     <List
-        {...props}
-        filters={<ProductFilter />}
-        perPage={20}
-        sort={{ field: 'id', order: 'ASC' }}
+    {...props}
+    filters={<ProductFilter />}
+    sort={{ field: 'name', order: 'DESC' }}
+    perPage={25}
     >
-        <GridList />
+        <Responsive
+            medium={
+                <Datagrid>
+                <TextField source="name" />
+                <TextField source="price" />
+                <TextField source="link" />
+                <TextField source="description" />
+                <DateField source="createdAt" type="date" />
+                <EditButton />
+            </Datagrid>
+            }
+        />
     </List>
 );
 
@@ -90,7 +111,7 @@ export const ProductCreate = withStyles(createStyles)(
     ({ classes, ...props }) => (
         <Create {...props}>
             <TabbedForm>
-                <FormTab label="resources.products.tabs.image">
+                {/* <FormTab label="resources.products.tabs.image">
                     <TextInput
                         autoFocus
                         source="image"
@@ -102,15 +123,18 @@ export const ProductCreate = withStyles(createStyles)(
                         options={{ fullWidth: true }}
                         validate={required()}
                     />
-                </FormTab>
-                <FormTab label="resources.products.tabs.details" path="details">
-                    <TextInput source="reference" validate={required()} />
+                </FormTab> */}
+                {/* <FormTab label="resources.products.tabs.details" path="details"> */}
+                <FormTab label="resources.products.tabs.details">
+                    {/* <TextInput source="reference" validate={required()} /> */}
+                    <TextInput source="name"  validate={required()}/>
                     <NumberInput
                         source="price"
                         validate={required()}
                         className={classes.price}
                     />
-                    <NumberInput
+                    <TextInput source="link"/>
+                    {/* <NumberInput
                         source="width"
                         validate={required()}
                         className={classes.width}
@@ -121,7 +145,7 @@ export const ProductCreate = withStyles(createStyles)(
                         validate={required()}
                         className={classes.height}
                         formClassName={classes.heightFormGroup}
-                    />
+                    /> */}
                     <ReferenceInput
                         source="category_id"
                         reference="categories"
@@ -161,15 +185,17 @@ const editStyles = {
 export const ProductEdit = withStyles(editStyles)(({ classes, ...props }) => (
     <Edit {...props} title={<ProductTitle />}>
         <TabbedForm>
-            <FormTab label="resources.products.tabs.image">
+            {/* <FormTab label="resources.products.tabs.image">
                 <Poster />
                 <TextInput source="image" options={{ fullWidth: true }} />
                 <TextInput source="thumbnail" options={{ fullWidth: true }} />
-            </FormTab>
-            <FormTab label="resources.products.tabs.details" path="details">
-                <TextInput source="reference" />
+            </FormTab> */}
+            {/* <FormTab label="resources.products.tabs.details" path="details"> */}
+            <FormTab label="resources.products.tabs.details">
+                {/* <TextInput source="reference" /> */}
+                <TextInput source="name"  validate={required()}/>
                 <NumberInput source="price" className={classes.price} />
-                <NumberInput
+                {/* <NumberInput
                     source="width"
                     className={classes.width}
                     formClassName={classes.widthFormGroup}
@@ -178,7 +204,8 @@ export const ProductEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     source="height"
                     className={classes.height}
                     formClassName={classes.heightFormGroup}
-                />
+                /> */}
+                <TextInput source="link"  />
                 <ReferenceInput source="category_id" reference="categories">
                     <SelectInput source="name" />
                 </ReferenceInput>
@@ -190,7 +217,7 @@ export const ProductEdit = withStyles(editStyles)(({ classes, ...props }) => (
             >
                 <RichTextInput source="description" addLabel={false} />
             </FormTab>
-            <FormTab label="resources.products.tabs.reviews" path="reviews">
+            {/* <FormTab label="resources.products.tabs.reviews" path="reviews">
                 <ReferenceManyField
                     reference="reviews"
                     target="product_id"
@@ -209,7 +236,7 @@ export const ProductEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         <EditButton />
                     </Datagrid>
                 </ReferenceManyField>
-            </FormTab>
+            </FormTab> */}
         </TabbedForm>
     </Edit>
 ));
