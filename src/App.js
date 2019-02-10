@@ -27,7 +27,7 @@ import {
     ProductEdit,
     ProductIcon,
 } from './products';
-import { CategoryList, CategoryEdit, CategoryIcon } from './categories';
+import { CategoryList, CategoryEdit, CategoryIcon, CategoryCreate} from './categories';
 import { ReviewList, ReviewEdit, ReviewIcon } from './reviews';
 import { UserList, UserEdit, UserCreate, UserIcon } from './users';
 
@@ -106,6 +106,7 @@ class App extends Component {
                     name="categories"
                     list={CategoryList}
                     edit={CategoryEdit}
+                    create={CategoryCreate}
                     icon={CategoryIcon}
                 />
                 <Resource

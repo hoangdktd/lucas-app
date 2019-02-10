@@ -2,6 +2,7 @@ import React from 'react';
 import {
     translate,
     Datagrid,
+    Create,
     Edit,
     EditButton,
     List,
@@ -46,7 +47,7 @@ export const CategoryEdit = props => (
     <Edit title={<CategoryTitle />} {...props}>
         <SimpleForm>
             <TextInput source="name" />
-            <ReferenceManyField
+            {/* <ReferenceManyField
                 reference="products"
                 target="category_id"
                 label="resources.categories.fields.products"
@@ -70,7 +71,15 @@ export const CategoryEdit = props => (
                     <NumberField source="stock" />
                     <EditButton />
                 </Datagrid>
-            </ReferenceManyField>
+            </ReferenceManyField> */}
         </SimpleForm>
     </Edit>
+);
+
+export const CategoryCreate = ({ classes, ...props }) => (
+    <Create {...props}>
+        <SimpleForm>
+            <TextInput source="name" />
+        </SimpleForm>
+    </Create>
 );
