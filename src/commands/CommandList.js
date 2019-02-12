@@ -116,7 +116,7 @@ class TabbedDatagrid extends React.Component {
                                         source="total"
                                         options={{
                                             style: 'currency',
-                                            currency: 'USD',
+                                            currency: 'VND',
                                         }}
                                         className={classes.total}
                                     />
@@ -136,7 +136,7 @@ class TabbedDatagrid extends React.Component {
                                         source="total"
                                         options={{
                                             style: 'currency',
-                                            currency: 'USD',
+                                            currency: 'VND',
                                         }}
                                         className={classes.total}
                                     />
@@ -157,7 +157,7 @@ class TabbedDatagrid extends React.Component {
                                         source="total"
                                         options={{
                                             style: 'currency',
-                                            currency: 'USD',
+                                            currency: 'VND',
                                         }}
                                         className={classes.total}
                                     />

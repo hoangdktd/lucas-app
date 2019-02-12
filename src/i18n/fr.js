@@ -29,6 +29,13 @@ export default {
                 demo_button: 'Code source de cette démo',
             },
         },
+        order: {
+            add_product: 'Add Product',
+            product_name: 'Product Name',
+            link: 'Link',
+            price: 'Price',
+            quantity: 'Quantity'
+        }
     },
     resources: {
         customers: {
@@ -100,6 +107,8 @@ export default {
                 width_gte: 'Largeur mini',
                 width_lte: 'Margeur maxi',
                 width: 'Largeur',
+                quantity: 'Quantity',
+                product:'Product'
             },
             tabs: {
                 image: 'Image',

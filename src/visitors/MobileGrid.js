@@ -79,7 +79,7 @@ const MobileGrid = withStyles(listStyles)(
                             <ColoredNumberField
                                 record={data[id]}
                                 source="total_spent"
-                                options={{ style: 'currency', currency: 'USD' }}
+                                options={{ style: 'currency', currency: 'VND' }}
                             />
                         </div>
                     </CardContent>

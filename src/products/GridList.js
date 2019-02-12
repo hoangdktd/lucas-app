@@ -63,7 +63,7 @@ const GridList = ({ classes, ids, data, basePath, width }) => (
                                     color="inherit"
                                     options={{
                                         style: 'currency',
-                                        currency: 'USD',
+                                        currency: 'VND',
                                     }}
                                 />
                             </span>

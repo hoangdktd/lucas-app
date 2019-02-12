@@ -82,7 +82,7 @@ const MobileGrid = withStyles(listStyles)(
                             <NumberField
                                 record={data[id]}
                                 source="total"
-                                options={{ style: 'currency', currency: 'USD' }}
+                                options={{ style: 'currency', currency: 'VND' }}
                                 className={classes.total}
                             />
                         </span>

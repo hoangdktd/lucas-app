@@ -147,7 +147,7 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         <NbItemsField />
                         <NumberField
                             source="total"
-                            options={{ style: 'currency', currency: 'USD' }}
+                            options={{ style: 'currency', currency: 'VND' }}
                         />
                         <TextField source="status" />
                         <EditButton />

@@ -88,7 +88,7 @@ class App extends Component {
                     icon={VisitorIcon}
                 />
                 <Resource
-                    name="order"
+                    name="commands"
                     list={CommandList}
                     edit={CommandEdit}
                     create={CommandCreate}

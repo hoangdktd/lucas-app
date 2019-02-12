@@ -21,7 +21,7 @@ import { UserIcon } from './users';
 const items = [
     { name: 'customers', icon: <VisitorIcon /> },
     // { name: 'segments', icon: <LabelIcon /> },
-    { name: 'order', icon: <CommandIcon /> },
+    { name: 'commands', icon: <CommandIcon /> },
     { name: 'products', icon: <ProductIcon /> },
     { name: 'categories', icon: <CategoryIcon /> },
     // { name: 'reviews', icon: <ReviewIcon /> },

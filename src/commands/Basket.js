@@ -83,7 +83,7 @@ class Basket extends Component {
                                                 item.product_id
                                             ].price.toLocaleString(undefined, {
                                                 style: 'currency',
-                                                currency: 'USD',
+                                                currency: 'VND',
                                             })}
                                         </TableCell>
                                         <TableCell
@@ -99,7 +99,7 @@ class Basket extends Component {
                                                     .price * item.quantity
                                             ).toLocaleString(undefined, {
                                                 style: 'currency',
-                                                currency: 'USD',
+                                                currency: 'VND',
                                             })}
                                         </TableCell>
                                     </TableRow>
@@ -115,7 +115,7 @@ class Basket extends Component {
                             <TableCell className={classes.rightAlignedCell}>
                                 {record.total_ex_taxes.toLocaleString(
                                     undefined,
-                                    { style: 'currency', currency: 'USD' }
+                                    { style: 'currency', currency: 'VND' }
                                 )}
                             </TableCell>
                         </TableRow>
@@ -129,7 +129,7 @@ class Basket extends Component {
                             <TableCell className={classes.rightAlignedCell}>
                                 {record.delivery_fees.toLocaleString(
                                     undefined,
-                                    { style: 'currency', currency: 'USD' }
+                                    { style: 'currency', currency: 'VND' }
                                 )}
                             </TableCell>
                         </TableRow>
@@ -161,7 +161,7 @@ class Basket extends Component {
                             >
                                 {record.total.toLocaleString(undefined, {
                                     style: 'currency',
-                                    currency: 'USD',
+                                    currency: 'VND',
                                 })}
                             </TableCell>
                         </TableRow>
