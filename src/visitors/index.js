@@ -78,6 +78,9 @@ export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
                 <TextField source="displayName" />
                 <TextField source="customerIdentity" />
                 <TextField source="address" />
+                <TextField source="facebookLink" />
+                <TextField source="note" />
+                <TextField source="channel" />
                 <DateField source="birthday" type="date" />
                 <ColoredNumberField source="totalSpent" />
                 <EditButton />
@@ -123,6 +126,21 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     validation={{ email: true }}
                     fullWidth={true}
                     formClassName={classes.email}
+                />
+                <TextInput
+                    source="facebookLink"
+                    formClassName={classes.email}
+                    fullWidth={true}
+                />
+                <TextInput
+                    source="note"
+                    formClassName={classes.email}
+                    fullWidth={true}
+                />
+                <TextInput
+                    source="channel"
+                    formClassName={classes.email}
+                    fullWidth={true}
                 />
                 <DateInput source="birthday" />
             </FormTab>
@@ -207,6 +225,21 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     type="email"
                     source="email"
                     validation={{ email: true }}
+                    fullWidth={true}
+                    formClassName={classes.email}
+                />
+                <TextInput
+                    source="facebookLink"
+                    formClassName={classes.email}
+                    fullWidth={true}
+                />
+                <TextInput
+                    source="note"
+                    fullWidth={true}
+                    formClassName={classes.email}
+                />
+                <TextInput
+                    source="channel"
                     fullWidth={true}
                     formClassName={classes.email}
                 />
