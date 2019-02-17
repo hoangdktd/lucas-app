@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK, AUTH_ERROR } from 'react-admin';
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK, AUTH_ERROR, AUTH_GET_PERMISSIONS  } from 'react-admin';
 import decodeJwt from 'jwt-decode';
 import { APIServer } from './utilities/constant';
 import * as APIUrl from './utilities/APIUrl';
@@ -44,6 +44,10 @@ console.log(params);
     }
     if (type === AUTH_ERROR) {
         return Promise.resolve();
+    }
+    if (type === AUTH_GET_PERMISSIONS) {
+        const role = localStorage.getItem('role');
+        return role ? Promise.resolve(role) : Promise.reject();
     }
     if (type === AUTH_CHECK) {
         return localStorage.getItem('token')

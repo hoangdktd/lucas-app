@@ -33,7 +33,7 @@ import { ReviewList, ReviewEdit, ReviewIcon } from './reviews';
 import { UserList, UserEdit, UserCreate, UserIcon } from './users';
 
 import dataProviderFactory from './dataProvider';
-
+import { userTypeRole } from './utilities/constant';
 const i18nProvider = locale => {
     if (locale === 'fr') {
         return import('./i18n/fr').then(messages => messages.default);
@@ -81,6 +81,16 @@ class App extends Component {
                 locale="en"
                 i18nProvider={i18nProvider}
             >
+                {permissions => [
+                    // Restrict access to the edit and remove views to admin only
+                    <Resource
+                        name="customers"
+                        list={VisitorList}
+                        create={VisitorCreate}
+                        edit={permissions === userTypeRole[0] ? null : null}
+                        icon={VisitorIcon}
+                    />,
+                ]}
                 <Resource
                     name="customers"
                     list={VisitorList}

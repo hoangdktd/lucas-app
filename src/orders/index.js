@@ -59,6 +59,8 @@ export const OrderFilter = props => (
             label="resources.order.fields.infoOrderLink"
             source="infoOrderLink"
         />
+        <DateInput source="startDate" />
+        <DateInput source="endDate" />
     </Filter>
 );
 
