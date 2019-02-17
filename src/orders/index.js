@@ -120,6 +120,9 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         optionText={choice =>
                             `${choice.customerIdentity}`
                         }
+                        options={{
+                            fullWidth: true,
+                        }}
                     />
                 </ReferenceInput>
                 <ReferenceInput
@@ -135,6 +138,9 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         optionText={choice =>
                             `${choice.userId}`
                         }
+                        options={{
+                            fullWidth: true,
+                        }}
                     />
                 </ReferenceInput>
                 <TextInput
@@ -212,6 +218,9 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         optionText={choice =>
                             `${choice.userId}`
                         }
+                        options={{
+                            fullWidth: true,
+                        }}
                     />
                 </ReferenceInput>
 
@@ -268,6 +277,9 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         optionText={choice =>
                             `${choice.customerIdentity}`
                         }
+                        options={{
+                            fullWidth: true,
+                        }}
                     />
                 </ReferenceInput>
                 <ReferenceInput
@@ -283,6 +295,9 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         optionText={choice =>
                             `${choice.userId}`
                         }
+                        options={{
+                            fullWidth: true,
+                        }}
                     />
                 </ReferenceInput>
                 <TextInput
@@ -361,6 +376,9 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         optionText={choice =>
                             `${choice.userId}`
                         }
+                        options={{
+                            fullWidth: true,
+                        }}
                     />
                 </ReferenceInput>
 
