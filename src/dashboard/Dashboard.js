@@ -38,7 +38,7 @@ class Dashboard extends Component {
                             .reduce(
                                 (stats, order) => {
                                     if (order.status !== orderStatusEnum[3]) {
-                                        stats.revenue += order.total;
+                                        stats.revenue += order.priceOrder;
                                         stats.nbNewOrders++;
                                     }
                                     if (order.status === orderStatusEnum[0] || order.status === orderStatusEnum[1]) {
