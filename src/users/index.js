@@ -22,12 +22,13 @@ import {
     SearchInput,
     DateInput,
     TabbedForm,
+    regex
 } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Icon from '@material-ui/icons/Collections';
 import RichTextInput from 'ra-input-rich-text';
-
+import { userTypeList } from '../utilities/constant';
 // import CustomerReferenceField from '../visitors/CustomerReferenceField';
 // import StarRatingField from '../reviews/StarRatingField';
 import GridList from './GridList';
@@ -120,18 +121,29 @@ export const UserCreate = withStyles(editStyles)(({ classes, ...props }) => (
                 <TextInput
                     source="displayName"
                     formClassName={classes.displayName}
+                    validate={required()}
                 />
                 <TextInput
                     source="userId"
                     label="User ID"
+                    validate={required()}
                 />
                 <SelectInput
                     source="userRole"
                     choices={[
-                        {id: 1, name: 'commons.roleManager'},
-                        {id: 2, name: 'commons.roleUser'}
+                        {id: 0, name: userTypeList[0]},
+                        {id: 1, name: userTypeList[1]},
+                        {id: 2, name: userTypeList[2]},
+                        {id: 3, name: userTypeList[3]}
                     ]}
                     translateChoice={true}
+                    validate={required()}
+                />
+                <TextInput
+                    source="password"
+                    label="resources.user.fields.userPassword"
+                    type="password"
+                    validate={required()}
                 />
                 <TextInput
                     type="email"
@@ -162,18 +174,23 @@ export const UserEdit = withStyles(editStyles)(({ classes, ...props }) => (
                 <TextInput
                     source="displayName"
                     formClassName={classes.displayName}
+                    validate={required()}
                 />
                 <TextInput
                     source="userId"
                     label="User ID"
+                    validate={required()}
                 />
                 <SelectInput
                     source="userRole"
                     choices={[
-                        {id: 1, name: 'commons.roleManager'},
-                        {id: 2, name: 'commons.roleUser'}
+                        {id: 0, name: userTypeList[0]},
+                        {id: 1, name: userTypeList[1]},
+                        {id: 2, name: userTypeList[2]},
+                        {id: 3, name: userTypeList[3]}
                     ]}
                     translateChoice={true}
+                    validate={required()}
                 />
                 <TextInput
                     type="email"

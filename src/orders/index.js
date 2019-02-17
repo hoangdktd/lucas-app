@@ -72,6 +72,7 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
         {...props}
         filters={<OrderFilter />}
         sort={{ field: 'displayName', order: 'DESC' }}
+        perPage= {25}
         pagination={<PostPagination />}
     >
         <Responsive
@@ -219,6 +220,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                             fullWidth={true}
                             formClassName={classes.fullWidth}
                             {...rest}
+                            validate={required()}
                         />
                     }
                 </FormDataConsumer>

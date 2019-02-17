@@ -177,7 +177,8 @@ export default {
             fields: {
                 username: 'User Name',
                 name: 'Name',
-                userid: 'User ID'
+                userid: 'User ID',
+                userPassword: 'User Password'
             },
             data: {
                 compulsive: 'Compulsive',
