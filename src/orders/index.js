@@ -73,7 +73,7 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
     <List
         {...props}
         filters={<OrderFilter />}
-        sort={{ field: 'displayName', order: 'DESC' }}
+        sort={{ field: 'updatedAt', order: 'DESC' }}
         perPage= {25}
         pagination={<PostPagination />}
     >
