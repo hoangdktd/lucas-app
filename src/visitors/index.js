@@ -19,7 +19,8 @@ import {
     TabbedForm,
     TextField,
     TextInput,
-    required
+    required,
+    Pagination
 } from 'react-admin';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Icon from '@material-ui/icons/Person';
@@ -65,13 +66,14 @@ ColoredNumberField.defaultProps = NumberField.defaultProps;
 const listStyles = {
     nb_commands: { color: 'purple' },
 };
-
+const PostPagination = props => <Pagination rowsPerPageOptions={[10, 25, 50, 100]} {...props} />
 export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
     <List
         {...props}
         filters={<VisitorFilter />}
         sort={{ field: 'displayName', order: 'DESC' }}
         perPage={25}
+        pagination={<PostPagination />}
     >
         <Responsive
             medium={

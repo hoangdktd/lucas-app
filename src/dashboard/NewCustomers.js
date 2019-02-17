@@ -63,12 +63,8 @@ const NewCustomers = ({ visitors = [], nb, translate, classes }) => (
                         component={Link}
                         key={record.id}
                     >
-                        <Avatar
-                            src={`${record.avatar}?size=32x32`}
-                            className={classes.avatar}
-                        />
                         <ListItemText
-                            primary={`${record.first_name} ${record.last_name}`}
+                            primary={`${record.displayName}`}
                             className={classes.listItemText}
                         />
                     </ListItem>

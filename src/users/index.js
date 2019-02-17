@@ -21,7 +21,7 @@ import {
     Responsive,
     SearchInput,
     DateInput,
-    TabbedForm
+    TabbedForm,
 } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -74,13 +74,13 @@ export const UserFilter = props => (
 const listStyles = {
     nb_commands: { color: 'purple' },
 };
-
+const PostPagination = props => <Pagination rowsPerPageOptions={[10, 25, 50, 100]} {...props} />
 export const UserList = withStyles(listStyles)(({ classes, ...props }) => (
     <List
         {...props}
         filters={<UserFilter />}
         sort={{ field: 'displayName', order: 'DESC' }}
-        perPage={25}
+        pagination={<PostPagination />}
     >
         <Responsive
             medium={

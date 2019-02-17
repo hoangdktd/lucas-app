@@ -19,7 +19,8 @@ import {
     Responsive,
     SearchInput,
     DateInput,
-    TabbedForm
+    TabbedForm,
+    Pagination 
 } from 'react-admin';
 import { FormDataConsumer } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
@@ -65,13 +66,13 @@ export const OrderFilter = props => (
 const listStyles = {
     nb_commands: { color: 'purple' },
 };
-
+const PostPagination = props => <Pagination rowsPerPageOptions={[10, 25, 50, 100]} {...props} />
 export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
     <List
         {...props}
         filters={<OrderFilter />}
         sort={{ field: 'displayName', order: 'DESC' }}
-        perPage={25}
+        pagination={<PostPagination />}
     >
         <Responsive
             medium={
@@ -294,6 +295,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         {id: orderStatusEnum[0], name: orderStatusEnum[0]},
                         {id: orderStatusEnum[1], name: orderStatusEnum[1]},
                         {id: orderStatusEnum[2], name: orderStatusEnum[2]},
+                        {id: orderStatusEnum[3], name: orderStatusEnum[3]},
                     ]}
                     fullWidth={true}
                     formClassName={classes.fullWidth}

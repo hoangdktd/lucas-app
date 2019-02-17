@@ -8,6 +8,7 @@ import PendingOrders from './PendingOrders';
 import PendingReviews from './PendingReviews';
 import NewCustomers from './NewCustomers';
 import dataProviderFactory from '../dataProvider';
+import { orderStatusEnum } from '../utilities/constant';
 
 const styles = {
     flex: { display: 'flex' },
@@ -26,21 +27,21 @@ class Dashboard extends Component {
 
         dataProviderFactory(process.env.REACT_APP_DATA_PROVIDER).then(
             dataProvider => {
-                dataProvider(GET_LIST, 'commands', {
+                dataProvider(GET_LIST, 'order', {
                     filter: { date_gte: aMonthAgo.toISOString() },
                     sort: { field: 'date', order: 'DESC' },
                     pagination: { page: 1, perPage: 50 },
                 })
                     .then(response =>
                         response.data
-                            .filter(order => order.status !== 'cancelled')
+                            .filter(order => order.status !== orderStatusEnum[3])
                             .reduce(
                                 (stats, order) => {
-                                    if (order.status !== 'cancelled') {
+                                    if (order.status !== orderStatusEnum[3]) {
                                         stats.revenue += order.total;
                                         stats.nbNewOrders++;
                                     }
-                                    if (order.status === 'ordered') {
+                                    if (order.status === orderStatusEnum[0] || order.status === orderStatusEnum[1]) {
                                         stats.pendingOrders.push(order);
                                     }
                                     return stats;
@@ -66,7 +67,7 @@ class Dashboard extends Component {
                         return pendingOrders;
                     })
                     .then(pendingOrders =>
-                        pendingOrders.map(order => order.customer_id)
+                        pendingOrders.map(order => order.customerIdentity)
                     )
                     .then(customerIds =>
                         dataProvider(GET_MANY, 'customers', {
@@ -84,37 +85,37 @@ class Dashboard extends Component {
                         this.setState({ pendingOrdersCustomers: customers })
                     );
 
-                dataProvider(GET_LIST, 'reviews', {
-                    filter: { status: 'pending' },
-                    sort: { field: 'date', order: 'DESC' },
-                    pagination: { page: 1, perPage: 100 },
-                })
-                    .then(response => response.data)
-                    .then(reviews => {
-                        const nbPendingReviews = reviews.reduce(nb => ++nb, 0);
-                        const pendingReviews = reviews.slice(
-                            0,
-                            Math.min(10, reviews.length)
-                        );
-                        this.setState({ pendingReviews, nbPendingReviews });
-                        return pendingReviews;
-                    })
-                    .then(reviews => reviews.map(review => review.customer_id))
-                    .then(customerIds =>
-                        dataProvider(GET_MANY, 'customers', {
-                            ids: customerIds,
-                        })
-                    )
-                    .then(response => response.data)
-                    .then(customers =>
-                        customers.reduce((prev, customer) => {
-                            prev[customer.id] = customer; // eslint-disable-line no-param-reassign
-                            return prev;
-                        }, {})
-                    )
-                    .then(customers =>
-                        this.setState({ pendingReviewsCustomers: customers })
-                    );
+                // dataProvider(GET_LIST, 'reviews', {
+                //     filter: { status: 'pending' },
+                //     sort: { field: 'date', order: 'DESC' },
+                //     pagination: { page: 1, perPage: 100 },
+                // })
+                //     .then(response => response.data)
+                //     .then(reviews => {
+                //         const nbPendingReviews = reviews.reduce(nb => ++nb, 0);
+                //         const pendingReviews = reviews.slice(
+                //             0,
+                //             Math.min(10, reviews.length)
+                //         );
+                //         this.setState({ pendingReviews, nbPendingReviews });
+                //         return pendingReviews;
+                //     })
+                //     .then(reviews => reviews.map(review => review.customer_id))
+                //     .then(customerIds =>
+                //         dataProvider(GET_MANY, 'customers', {
+                //             ids: customerIds,
+                //         })
+                //     )
+                //     .then(response => response.data)
+                //     .then(customers =>
+                //         customers.reduce((prev, customer) => {
+                //             prev[customer.id] = customer; // eslint-disable-line no-param-reassign
+                //             return prev;
+                //         }, {})
+                //     )
+                //     .then(customers =>
+                //         this.setState({ pendingReviewsCustomers: customers })
+                //     );
 
                 dataProvider(GET_LIST, 'customers', {
                     filter: {
@@ -194,7 +195,7 @@ class Dashboard extends Component {
                                     <MonthlyRevenue value={revenue} />
                                     <NbNewOrders value={nbNewOrders} />
                                 </div>
-                                <div style={styles.singleCol}>
+                                {/* <div style={styles.singleCol}>
                                     <Welcome />
                                 </div>
                                 <div style={styles.singleCol}>
@@ -202,15 +203,10 @@ class Dashboard extends Component {
                                         orders={pendingOrders}
                                         customers={pendingOrdersCustomers}
                                     />
-                                </div>
+                                </div> */}
                             </div>
                             <div style={styles.rightCol}>
                                 <div style={styles.flex}>
-                                    <PendingReviews
-                                        nb={nbPendingReviews}
-                                        reviews={pendingReviews}
-                                        customers={pendingReviewsCustomers}
-                                    />
                                     <NewCustomers
                                         nb={nbNewCustomers}
                                         visitors={newCustomers}
