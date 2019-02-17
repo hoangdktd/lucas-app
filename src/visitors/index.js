@@ -19,6 +19,7 @@ import {
     TabbedForm,
     TextField,
     TextInput,
+    required
 } from 'react-admin';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Icon from '@material-ui/icons/Person';
@@ -116,9 +117,11 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                 <TextInput
                     source="displayName"
                     formClassName={classes.displayName}
+                    validate={required()}
                 />
                 <TextInput
                     source="customerIdentity"
+                    validate={required()}
                 />
                 <TextInput
                     type="email"
@@ -126,6 +129,7 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     validation={{ email: true }}
                     fullWidth={true}
                     formClassName={classes.email}
+                    validate={required()}
                 />
                 <TextInput
                     source="facebookLink"
@@ -217,9 +221,11 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                 <TextInput
                     source="displayName"
                     formClassName={classes.displayName}
+                    validate={required()}
                 />
                 <TextInput
                     source="customerIdentity"
+                    validate={required()}
                 />
                 <TextInput
                     type="email"
@@ -227,6 +233,7 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     validation={{ email: true }}
                     fullWidth={true}
                     formClassName={classes.email}
+                    validate={required()}
                 />
                 <TextInput
                     source="facebookLink"

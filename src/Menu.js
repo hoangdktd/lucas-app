@@ -13,6 +13,7 @@ import { withRouter } from 'react-router-dom';
 
 import { VisitorIcon } from './visitors';
 import { CommandIcon } from './commands';
+import { OrderIcon } from './orders';
 import { ProductIcon } from './products';
 import { CategoryIcon } from './categories';
 import { ReviewIcon } from './reviews';
@@ -21,8 +22,9 @@ import { UserIcon } from './users';
 const items = [
     { name: 'customers', icon: <VisitorIcon /> },
     // { name: 'segments', icon: <LabelIcon /> },
-    { name: 'commands', icon: <CommandIcon /> },
-    { name: 'products', icon: <ProductIcon /> },
+    // { name: 'commands', icon: <CommandIcon /> },
+    { name: 'order', icon: <OrderIcon />},
+    // { name: 'products', icon: <ProductIcon /> },
     { name: 'categories', icon: <CategoryIcon /> },
     // { name: 'reviews', icon: <ReviewIcon /> },
     { name: 'user', icon: <UserIcon /> },

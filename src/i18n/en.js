@@ -96,7 +96,11 @@ export default {
                 total_gte: 'Min amount',
                 status: 'Status',
                 returned: 'Returned',
+                infoOrderLink: 'Link',
+                idPackage: 'Package',
             },
+            createOrder: 'Create Order',
+            editOrder: 'Edit Order'
         },
         products: {
             name: 'Product |||| Products',

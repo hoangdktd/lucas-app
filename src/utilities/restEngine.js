@@ -10,7 +10,7 @@ import {
     DELETE_MANY,
     fetchUtils,
 } from 'admin-on-rest';
-
+import decodeJwt from 'jwt-decode';
 const { queryParameters } = fetchUtils;
 const { fetchJson } = fetchUtils;
 
@@ -148,6 +148,12 @@ export default (apiUrl, httpClient = fetchJson) => {
      */
     return (type, resource, params) => {
         // json-server doesn't handle WHERE IN requests, so we fallback to calling GET_ONE n times instead
+        const token = localStorage.getItem('token');
+        const decodedToken = decodeJwt(token);
+        const dateNow = new Date();
+        if (decodedToken.exp < (dateNow.getTime() / 1000)){
+            // alert('Session is expired');
+        }
         if (type === GET_MANY) {
             return Promise.all(params.ids.map(id => httpClient(`${apiUrl}/${resource}/${id}`)))
                 .then(responses => ({ data: responses.map(response => response.json) }));

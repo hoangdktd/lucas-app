@@ -91,6 +91,28 @@ export default {
                 total_gte: 'Montant minimum',
             },
         },
+        order: {
+            name: 'Order |||| Orders',
+            fields: {
+                basket: {
+                    delivery: 'Delivery',
+                    reference: 'Reference',
+                    quantity: 'Quantity',
+                    sum: 'Sum',
+                    tax_rate: 'Tax Rate',
+                    total: 'Total',
+                    unit_price: 'Unit Price',
+                },
+                customer_id: 'Customer',
+                date_gte: 'Passed Since',
+                date_lte: 'Passed Before',
+                total_gte: 'Min amount',
+                status: 'Status',
+                returned: 'Returned',
+                infoOrderLink: 'Link',
+                idPackage: 'Package',
+            },
+        },
         products: {
             name: 'Poster |||| Posters',
             fields: {

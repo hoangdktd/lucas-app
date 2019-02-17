@@ -8,7 +8,7 @@ const httpClient = (url, options = {}) => {
     }
 
     const token = localStorage.getItem('token');
-    console.log(token);
+    // console.log(token);
     //options.headers.set('x-access-token', `Bearer ${token}`);
     options.headers.set('x-access-token', token);
     return fetchUtils.fetchJson(url, options);

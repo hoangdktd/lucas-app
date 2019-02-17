@@ -39,13 +39,14 @@ console.log(params);
     }
     if (type === AUTH_LOGOUT) {
         localStorage.removeItem('username');
+        localStorage.removeItem('token');
         return Promise.resolve();
     }
     if (type === AUTH_ERROR) {
         return Promise.resolve();
     }
     if (type === AUTH_CHECK) {
-        return localStorage.getItem('username')
+        return localStorage.getItem('token')
             ? Promise.resolve()
             : Promise.reject();
     }
