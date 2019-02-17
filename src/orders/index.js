@@ -20,7 +20,8 @@ import {
     SearchInput,
     DateInput,
     TabbedForm,
-    Pagination 
+    Pagination,
+    AutocompleteInput
 } from 'react-admin';
 import { FormDataConsumer } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
@@ -105,7 +106,7 @@ const editStyles = {
 export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
     <Create {...props}>
         <TabbedForm>
-            <FormTab label="resources.order.createOrder">
+            <FormTab label="resources.order.createOrder" formClassName={classes.fullWidth}>
                 <ReferenceInput
                     source="customerIdentity"
                     reference="customers"
@@ -113,7 +114,13 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.fullWidth}
                     validate={required()}
                 >
-                    <SelectInput optionText="customerIdentity"/>
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.customerIdentity}`
+                        }
+                    />
                 </ReferenceInput>
                 <ReferenceInput
                     source="saleId"
@@ -122,7 +129,13 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.fullWidth}
                     validate={required()}
                 >
-                    <SelectInput optionText="userId"/>
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.userId}`
+                        }
+                    />
                 </ReferenceInput>
                 <TextInput
                     source="channel"
@@ -193,7 +206,13 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.fullWidth}
                     validate={required()}
                 >
-                    <SelectInput  optionText="userId"/>
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.userId}`
+                        }
+                    />
                 </ReferenceInput>
 
                 <SelectInput
@@ -243,7 +262,13 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.fullWidth}
                     validate={required()}
                 >
-                    <SelectInput optionText="customerIdentity"/>
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.customerIdentity}`
+                        }
+                    />
                 </ReferenceInput>
                 <ReferenceInput
                     source="saleId"
@@ -252,7 +277,13 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.fullWidth}
                     validate={required()}
                 >
-                    <SelectInput optionText="userId"/>
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.userId}`
+                        }
+                    />
                 </ReferenceInput>
                 <TextInput
                     source="channel"
@@ -324,7 +355,13 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.fullWidth}
                     validate={required()}
                 >
-                    <SelectInput  optionText="userId"/>
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.userId}`
+                        }
+                    />
                 </ReferenceInput>
 
                 <SelectInput
