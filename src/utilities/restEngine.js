@@ -45,10 +45,11 @@ export default (apiUrl, httpClient = fetchJson) => {
             }
             case GET_LIST: {
                 const { page, perPage } = params.pagination;
-                const { field } = params.sort;
+                const { field, order } = params.sort;
                 const query = {
                     ...params.filter,
                     sort: field,
+                    order: order,
                     //_start: (page - 1) * perPage,
                     //_end: page * perPage,
                     perPage: perPage,
@@ -62,11 +63,12 @@ export default (apiUrl, httpClient = fetchJson) => {
                 break;
             case GET_MANY_REFERENCE: {
                 const { page, perPage } = params.pagination;
-                const { field } = params.sort;
+                const { field, order } = params.sort;
                 const query = {
                     ...params.filter,
                     [params.target]: params.id,
                     sort: field,
+                    order: order,
                     //_start: (page - 1) * perPage,
                     //_end: page * perPage,
                     perPage: perPage,
