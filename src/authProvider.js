@@ -30,15 +30,14 @@ console.log(params);
                 return response.json();
             })
             .then(({ token, user }) => {
-                console.log(token);
-                console.log(user);
-                const decodedToken = decodeJwt(token);
-                console.log(decodedToken);
-                localStorage.setItem('token', token);
-                localStorage.setItem('role', decodedToken.role);
-                localStorage.setItem('username', decodedToken.username);
-                localStorage.setItem('userId', user.userId);
-                localStorage.setItem('id', user.id);
+                if (token && user) {
+                    const decodedToken = decodeJwt(token);
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('role', decodedToken.role);
+                    localStorage.setItem('username', decodedToken.username);
+                    localStorage.setItem('userId', user.userId);
+                    localStorage.setItem('id', user.id);
+                }
             });
     }
     if (type === AUTH_LOGOUT) {
