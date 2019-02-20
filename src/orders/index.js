@@ -205,7 +205,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     translateChoice={true}
                     validate={required()}
                 />
-                <ReferenceInput
+                {/* <ReferenceInput
                     source="designerId"
                     reference="user"
                     fullWidth={true}
@@ -222,7 +222,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                             fullWidth: true,
                         }}
                     />
-                </ReferenceInput>
+                </ReferenceInput> */}
 
                 <SelectInput
                     source="typeDesigner"
