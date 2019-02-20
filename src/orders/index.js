@@ -21,7 +21,8 @@ import {
     DateInput,
     TabbedForm,
     Pagination,
-    AutocompleteInput
+    AutocompleteInput,
+    DisabledInput
 } from 'react-admin';
 import { FormDataConsumer } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
@@ -31,7 +32,7 @@ import RichTextInput from 'ra-input-rich-text';
 import { orderStatusEnum } from '../utilities/constant';
 import { typeDesignerEnum } from '../utilities/constant';
 import { paymentStatusEnum } from '../utilities/constant';
-
+import { userTypeRole } from '../utilities/constant';
 // import CustomerReferenceField from '../visitors/CustomerReferenceField';
 // import StarRatingField from '../reviews/StarRatingField';
 // import GridList from './GridList';
@@ -102,6 +103,7 @@ const editStyles = {
     last_name: { display: 'inline-block', marginLeft: 32 },
     fullWidth: { maxWidth: 544 },
 };
+const userID= localStorage.getItem('userId');
 
 export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
     <Create {...props}>
@@ -125,7 +127,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         }}
                     />
                 </ReferenceInput>
-                <ReferenceInput
+                {/* <ReferenceInput
                     source="saleId"
                     reference="user"
                     fullWidth={true}
@@ -142,7 +144,16 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                             fullWidth: true,
                         }}
                     />
-                </ReferenceInput>
+                </ReferenceInput> */}
+                <DisabledInput
+                    source="saleId"
+                    label="Sale ID"
+                    fullWidth={true}
+                    formClassName={classes.fullWidth}
+                    defaultValue= {userID}
+                    disable= {true}
+                    validate={required()}
+                />
                 <TextInput
                     source="channel"
                     fullWidth={true}
@@ -285,6 +296,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                 <ReferenceInput
                     source="saleId"
                     reference="user"
+                    filter={{ userRole: userTypeRole[1] }}
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                     validate={required()}
