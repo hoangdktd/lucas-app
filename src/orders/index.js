@@ -103,8 +103,10 @@ const editStyles = {
     first_name: { display: 'inline-block' },
     last_name: { display: 'inline-block', marginLeft: 32 },
     fullWidth: { maxWidth: 544 },
+    hidden: {overflow: 'hidden'},
 };
 const userID= localStorage.getItem('id');
+const user_ID= localStorage.getItem('userId');
 const postDefaultValue = { saleId: userID };
 export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
     <Create {...props}>
@@ -134,8 +136,11 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                     validate={required()}
+                    value={userID}
+                    defaultValue= {userID}
                 >
                     <AutocompleteInput
+                        defaultValue= {userID}
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
@@ -144,6 +149,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         options={{
                             fullWidth: true,
                         }}
+                        value={userID}
                     />
                 </ReferenceInput>
                 {/* <DisabledInput
@@ -154,6 +160,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     defaultValue= {userID}
                     disable= {true}
                     validate={required()}
+                    hidden={true}
                 /> */}
                 <TextInput
                     source="channel"
@@ -218,24 +225,6 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     translateChoice={true}
                     validate={required()}
                 />
-                {/* <ReferenceInput
-                    source="designerId"
-                    reference="user"
-                    fullWidth={true}
-                    formClassName={classes.fullWidth}
-                    validate={required()}
-                >
-                    <AutocompleteInput
-                        fullWidth={true}
-                        formClassName={classes.fullWidth}
-                        optionText={choice =>
-                            `${choice.userId}`
-                        }
-                        options={{
-                            fullWidth: true,
-                        }}
-                    />
-                </ReferenceInput> */}
 
                 <SelectInput
                     source="typeDesigner"
@@ -248,6 +237,24 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     translateChoice={true}
                     validate={required()}
                 />
+                <ReferenceInput
+                    source="designerId"
+                    reference="user"
+                    fullWidth={true}
+                    formClassName={classes.fullWidth}
+                >
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.userId}`
+                        }
+                        options={{
+                            fullWidth: true,
+                        }}
+                    />
+                </ReferenceInput>
+
                 <TextInput
                     source="idPackage"
                     fullWidth={true}
@@ -377,12 +384,22 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     translateChoice={true}
                     validate={required()}
                 />
+                <SelectInput
+                    source="typeDesigner"
+                    choices={[
+                        {id: typeDesignerEnum[0], name: typeDesignerEnum[0]},
+                        {id: typeDesignerEnum[1], name: typeDesignerEnum[1]},
+                    ]}
+                    fullWidth={true}
+                    formClassName={classes.fullWidth}
+                    translateChoice={true}
+                    validate={required()}
+                />
                 <ReferenceInput
                     source="designerId"
                     reference="user"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
-                    validate={required()}
                 >
                     <AutocompleteInput
                         fullWidth={true}
@@ -395,18 +412,6 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         }}
                     />
                 </ReferenceInput>
-
-                <SelectInput
-                    source="typeDesigner"
-                    choices={[
-                        {id: typeDesignerEnum[0], name: typeDesignerEnum[0]},
-                        {id: typeDesignerEnum[1], name: typeDesignerEnum[1]},
-                    ]}
-                    fullWidth={true}
-                    formClassName={classes.fullWidth}
-                    translateChoice={true}
-                    validate={required()}
-                />
             </FormTab>
         </TabbedForm>
     </Edit>
