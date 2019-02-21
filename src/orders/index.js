@@ -133,6 +133,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                 <ReferenceInput
                     source="saleId"
                     reference="user"
+                    label="Sale ID"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                     validate={required()}
@@ -184,7 +185,6 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     validate={required()}
                     fullWidth={true}
                     formClassName={classes.fullWidth}
-                    
                 />
                 <TextInput
                     source="note"
@@ -305,6 +305,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                 <ReferenceInput
                     source="saleId"
                     reference="user"
+                    label="Sale ID"
                     filter={{ userRole: userTypeRole[1] }}
                     fullWidth={true}
                     formClassName={classes.fullWidth}
