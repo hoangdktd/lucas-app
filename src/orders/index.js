@@ -22,7 +22,8 @@ import {
     TabbedForm,
     Pagination,
     AutocompleteInput,
-    DisabledInput
+    DisabledInput,
+    NumberField
 } from 'react-admin';
 import { FormDataConsumer } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
@@ -85,7 +86,7 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
                 <TextField source="customerIdentity" />
                 <TextField source="saleId" />
                 <TextField source="channel" />
-                <TextField source="priceOrder" />
+                <NumberField source="priceOrder" options={{ style: 'currency', currency: 'VND' }}/>
                 <TextField source="infoOrderLink" />
                 <TextField source="typeDesigner" />
                 <TextField source="idPackage" />
@@ -103,12 +104,12 @@ const editStyles = {
     last_name: { display: 'inline-block', marginLeft: 32 },
     fullWidth: { maxWidth: 544 },
 };
-const userID= localStorage.getItem('userId');
-
+const userID= localStorage.getItem('id');
+const postDefaultValue = { saleId: userID };
 export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
     <Create {...props}>
         <TabbedForm>
-            <FormTab label="resources.order.createOrder" formClassName={classes.fullWidth}>
+            <FormTab label="resources.order.createOrder" formClassName={classes.fullWidth} defaultValue={postDefaultValue}>
                 <ReferenceInput
                     source="customerIdentity"
                     reference="customers"
@@ -127,7 +128,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         }}
                     />
                 </ReferenceInput>
-                {/* <ReferenceInput
+                <ReferenceInput
                     source="saleId"
                     reference="user"
                     fullWidth={true}
@@ -144,8 +145,8 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                             fullWidth: true,
                         }}
                     />
-                </ReferenceInput> */}
-                <DisabledInput
+                </ReferenceInput>
+                {/* <DisabledInput
                     source="saleId"
                     label="Sale ID"
                     fullWidth={true}
@@ -153,7 +154,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     defaultValue= {userID}
                     disable= {true}
                     validate={required()}
-                />
+                /> */}
                 <TextInput
                     source="channel"
                     fullWidth={true}
@@ -176,6 +177,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     validate={required()}
                     fullWidth={true}
                     formClassName={classes.fullWidth}
+                    
                 />
                 <TextInput
                     source="note"
