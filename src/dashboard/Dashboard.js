@@ -34,10 +34,10 @@ class Dashboard extends Component {
                 })
                     .then(response =>
                         response.data
-                            .filter(order => order.status !== orderStatusEnum[3])
+                            .filter(order => order.status === orderStatusEnum[0])
                             .reduce(
                                 (stats, order) => {
-                                    if (order.status !== orderStatusEnum[3]) {
+                                    if (order.status === orderStatusEnum[0]) {
                                         stats.revenue += order.priceOrder;
                                         stats.nbNewOrders++;
                                     }
