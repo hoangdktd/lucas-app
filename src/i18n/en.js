@@ -98,6 +98,8 @@ export default {
                 returned: 'Returned',
                 infoOrderLink: 'Link',
                 idPackage: 'Package',
+                channel: 'Channel',
+                saleId: 'Sale Id',
             },
             createOrder: 'Create Order',
             editOrder: 'Edit Order'

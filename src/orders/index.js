@@ -58,6 +58,9 @@ export const OrderFilter = props => (
         <SearchInput source="q" alwaysOn />
         <SearchInput source="customerIdentity" label="resources.order.fields.customer_id"/>
         <SearchInput source="idPackage" label="resources.order.fields.idPackage"/>
+        <SearchInput source="channel" label="resources.order.fields.channel"/>
+        <SearchInput source="saleId" label="resources.order.fields.saleId"/>
+        <SearchInput source="idPackage" label="resources.order.fields.idPackage"/>
         <SearchInput
             label="resources.order.fields.infoOrderLink"
             source="infoOrderLink"
