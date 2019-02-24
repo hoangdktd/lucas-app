@@ -29,6 +29,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Icon from '@material-ui/icons/Collections';
 import RichTextInput from 'ra-input-rich-text';
 import { userTypeList } from '../utilities/constant';
+import { userTypeRole } from '../utilities/constant';
 // import CustomerReferenceField from '../visitors/CustomerReferenceField';
 // import StarRatingField from '../reviews/StarRatingField';
 import GridList from './GridList';
@@ -76,7 +77,7 @@ const listStyles = {
     nb_commands: { color: 'purple' },
 };
 const PostPagination = props => <Pagination rowsPerPageOptions={[10, 25, 50, 100]} {...props} />
-export const UserList = withStyles(listStyles)(({ classes, ...props }) => (
+export const UserList = withStyles(listStyles)(({ permissions, classes, ...props }) => (
     <List
         {...props}
         filters={<UserFilter />}
@@ -85,13 +86,13 @@ export const UserList = withStyles(listStyles)(({ classes, ...props }) => (
     >
         <Responsive
             medium={
-                <Datagrid>
+            <Datagrid>
                 <TextField source="displayName" />
                 <TextField source="userId" />
                 <TextField source="email" />
                 <TextField source="userType" />
                 <DateField source="createdAt" type="date" />
-                <EditButton />
+                {permissions === userTypeRole[0] && <EditButton />}
             </Datagrid>
             }
         />

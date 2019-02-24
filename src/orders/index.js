@@ -242,6 +242,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     reference="user"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
+                    filter={{ userRole: userTypeRole[3] }}
                 >
                     <AutocompleteInput
                         fullWidth={true}
@@ -400,6 +401,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     source="designerId"
                     reference="user"
                     fullWidth={true}
+                    filter={{ userRole: userTypeRole[3] }}
                     formClassName={classes.fullWidth}
                 >
                     <AutocompleteInput

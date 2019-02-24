@@ -31,6 +31,7 @@ import {
 import { CategoryList, CategoryEdit, CategoryIcon, CategoryCreate} from './categories';
 import { ReviewList, ReviewEdit, ReviewIcon } from './reviews';
 import { UserList, UserEdit, UserCreate, UserIcon } from './users';
+import { AccountEdit, AccountIcon } from './account';
 
 import dataProviderFactory from './dataProvider';
 import { userTypeRole } from './utilities/constant';
@@ -82,22 +83,14 @@ class App extends Component {
                 i18nProvider={i18nProvider}
             >
                 {permissions => [
-                    // Restrict access to the edit and remove views to admin only
-                    <Resource
-                        name="customers"
-                        list={VisitorList}
-                        create={VisitorCreate}
-                        edit={permissions === userTypeRole[0] ? null : null}
-                        icon={VisitorIcon}
-                    />,
-                ]}
+
                 <Resource
                     name="customers"
                     list={VisitorList}
                     edit={VisitorEdit}
                     create={VisitorCreate}
                     icon={VisitorIcon}
-                />
+                />,
                 <Resource
                     name="commands"
                     list={CommandList}
@@ -105,7 +98,7 @@ class App extends Component {
                     create={CommandCreate}
                     icon={CommandIcon}
                     options={{ label: 'Orders' }}
-                />
+                />,
                 <Resource
                     name="order"
                     list={OrderList}
@@ -113,35 +106,36 @@ class App extends Component {
                     create={OrderCreate}
                     icon={OrderIcon}
                     options={{ label: 'Orders' }}
-                />
+                />,
                 <Resource
                     name="products"
                     list={ProductList}
                     create={ProductCreate}
                     edit={ProductEdit}
                     icon={ProductIcon}
-                />
+                />,
                 <Resource
                     name="categories"
                     list={CategoryList}
                     edit={CategoryEdit}
                     create={CategoryCreate}
                     icon={CategoryIcon}
-                />
+                />,
                 <Resource
                     name="reviews"
                     list={ReviewList}
                     edit={ReviewEdit}
                     icon={ReviewIcon}
-                />
+                />,
                 <Resource
                     name="user"
                     list={UserList}
-                    edit={UserEdit}
-                    create={UserCreate}
+                    edit={permissions === userTypeRole[0] ? UserEdit : null}
+                    create={permissions === userTypeRole[0] ? UserCreate : null}
                     icon={UserIcon}
-                />
-                <Resource name="users1" list={ListGuesser} />
+                />,
+
+                ]}
             </Admin>
         );
     }

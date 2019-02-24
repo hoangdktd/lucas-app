@@ -189,6 +189,16 @@ export default {
                 reviewer: 'Reviewer',
             },
         },
+        account: {
+            name: 'My Account',
+            changePassword: "Change Password",
+            fields: {
+                username: 'User Name',
+                name: 'Name',
+                oldPassword: 'Old Password',
+                newPassword: 'New Password'
+            },
+        },
     },
     commons: {
         roleAdmin: 'Admin',

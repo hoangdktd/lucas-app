@@ -8,6 +8,7 @@ import {
     DashboardMenuItem,
     MenuItemLink,
     Responsive,
+    WithPermissions
 } from 'react-admin';
 import { withRouter } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ import { ProductIcon } from './products';
 import { CategoryIcon } from './categories';
 import { ReviewIcon } from './reviews';
 import { UserIcon } from './users';
-
+import { userTypeRole } from './utilities/constant';
 const items = [
     { name: 'customers', icon: <VisitorIcon /> },
     // { name: 'segments', icon: <LabelIcon /> },
@@ -27,13 +28,15 @@ const items = [
     // { name: 'products', icon: <ProductIcon /> },
     { name: 'categories', icon: <CategoryIcon /> },
     // { name: 'reviews', icon: <ReviewIcon /> },
-    { name: 'user', icon: <UserIcon /> },
+    { name: 'user', icon: <UserIcon /> , permissions:  userTypeRole[0]},
+    { name: 'account', icon: <UserIcon />},
 ];
 
 const Menu = ({ onMenuClick, translate, logout }) => (
     <div>
         <DashboardMenuItem onClick={onMenuClick} />
         {items.map(item => (
+            !item.permissions ?
             <MenuItemLink
                 key={item.name}
                 to={`/${item.name}`}
@@ -42,6 +45,21 @@ const Menu = ({ onMenuClick, translate, logout }) => (
                 })}
                 leftIcon={item.icon}
                 onClick={onMenuClick}
+            /> :
+            <WithPermissions
+                render={({ permissions }) => (
+                    permissions === item.permissions
+                        ? <MenuItemLink
+                            key={item.name}
+                            to={`/${item.name}`}
+                            primaryText={translate(`resources.${item.name}.name`, {
+                                smart_count: 2,
+                            })}
+                            leftIcon={item.icon}
+                            onClick={onMenuClick}
+                        />
+                        : null
+                )}
             />
         ))}
         <Responsive
