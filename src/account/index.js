@@ -1,106 +1,3 @@
-// import React from 'react';
-// import {
-//     translate,
-//     Create,
-//     Datagrid,
-//     DateField,
-//     Edit,
-//     EditButton,
-//     Filter,
-//     FormTab,
-//     List,
-//     NumberInput,
-//     Pagination,
-//     ReferenceInput,
-//     ReferenceManyField,
-//     SelectInput,
-//     TextField,
-//     TextInput,
-//     SimpleForm,
-//     required,
-//     Responsive,
-//     SearchInput,
-//     DateInput,
-//     TabbedForm,
-//     regex
-// } from 'react-admin';
-// import Chip from '@material-ui/core/Chip';
-// import withStyles from '@material-ui/core/styles/withStyles';
-// import Icon from '@material-ui/icons/Collections';
-// import RichTextInput from 'ra-input-rich-text';
-// import { userTypeList } from '../utilities/constant';
-// import { userTypeRole } from '../utilities/constant';
-
-
-// export const AccountIcon = Icon;
-
-// const editStyles = {
-//     first_name: { display: 'inline-block' },
-//     last_name: { display: 'inline-block', marginLeft: 32 },
-//     email: { width: 544 },
-//     displayName: { width: 544 },
-//     address: { maxWidth: 544 },
-//     zipcode: { display: 'inline-block' },
-//     city: { display: 'inline-block', marginLeft: 32 },
-//     comment: {
-//         maxWidth: '20em',
-//         overflow: 'hidden',
-//         textOverflow: 'ellipsis',
-//         whiteSpace: 'nowrap',
-//     },
-// };
-
-// export const AccountList = (({ permissions, classes, ...props }) => (
-//         <Responsive
-//             medium={
-//             <Datagrid>
-//                 <TextField source="displayName" />
-//                 <TextField source="userId" />
-//                 <TextField source="email" />
-//                 <TextField source="userType" />
-//                 <DateField source="createdAt" type="date" />
-//                 {permissions === userTypeRole[0] && <EditButton />}
-//             </Datagrid>
-//             }
-//         />
-//     </List>
-// ));
-
-
-// export const AccountEdit = withStyles(editStyles)(({ classes, ...props }) => (
-//     <Edit {...props}>
-//         <TabbedForm>
-//             <FormTab label="resources.customers.tabs.identity">
-//                 <TextInput
-//                     source="displayName"
-//                     formClassName={classes.displayName}
-//                     validate={required()}
-//                 />
-//                 <TextInput
-//                     type="email"
-//                     source="email"
-//                     validation={{ email: true }}
-//                     fullWidth={true}
-//                     formClassName={classes.email}
-//                     validate={required()}
-//                 />
-//                 <DateInput source="birthday" />
-//             </FormTab>
-//             <FormTab label="resources.account.changePassword" path="address">
-//                 <TextInput
-//                     source="password"
-//                     label="resources.account.fields.oldPassword"
-//                     type="password"
-//                     validate={required()}
-//                 />
-//             </FormTab>
-//         </TabbedForm>
-//     </Edit>
-// ));
-
-
-
-
 import React, { Component, Fragment } from 'react';
 // import { GET_LIST, GET_MANY, Responsive, Title, GET_ } from 'react-admin';
 import {
@@ -135,11 +32,13 @@ import {
     DateInput,
     TabbedForm,
     regex,
-    showNotification,
     FormDataConsumer,
-    SaveButton
+    SaveButton,
+    showNotification 
 } from 'react-admin';
 import dataProviderFactory from '../dataProvider';
+import { push } from 'react-router-redux';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -152,7 +51,7 @@ import { getFormValues } from 'redux-form';
 
 const styles = {
     label: { width: '10em', display: 'inline-block' },
-    button: { margin: '1em', width: '40px' },
+    button: { margin: '1em', width: '120px' },
 };
 
 const validateUserUpdate = (values) => {
@@ -184,6 +83,12 @@ class Account extends Component {
         };
     }
 
+    onChange = event => {
+        const changeObject = {};
+        changeObject[event.target.name] =  event.target.value;
+        this.setState(changeObject);
+    }
+
     componentDidMount() {
         const id= localStorage.getItem('id');
 
@@ -195,8 +100,6 @@ class Account extends Component {
                 })
                     .then(response => response.data)
                     .then(user => {
-                        console.log('user');
-                        console.log(user);
                         this.setState({
                             displayName: user.displayName,
                             email: user.email
@@ -207,9 +110,7 @@ class Account extends Component {
     }
 
     handleSubmit = values => {
-        console.log(values);
-        console.log(this.state);
-        console.log(this.props);
+        const { push, record, showNotification } = this.props;
         const id= localStorage.getItem('id');
         dataProviderFactory(process.env.REACT_APP_DATA_PROVIDER).then(
             dataProvider => {
@@ -217,17 +118,38 @@ class Account extends Component {
                     id: id,
                     data: {
                         displayName: this.state.displayName,
-                        email: this.state.email,
-                        oldPassword: this.state.oldPassword,
-                        newPassword: this.state.newPassword
+                        email: this.state.email
                     }
                 })
                     .then(response => response.data.user)
                     .then(user => {
-                        console.log('user');
+                        showNotification('Updated Account Profile');
+                    }).catch(error => {
+                        showNotification(error.message, 'error');
                     });
             }
         );
+        const userId= localStorage.getItem('userId');
+        if (this.state.oldPassword && this.state.newPassword && this.state.oldPassword !== ''  && this.state.newPassword !== '' ) {
+            dataProviderFactory(process.env.REACT_APP_DATA_PROVIDER).then(
+                dataProvider => {
+                    dataProvider(UPDATE, 'user/change-password', {
+                        id: id,
+                        data: {
+                            userId: userId,
+                            password: this.state.oldPassword,
+                            newPassword: this.state.newPassword
+                        }
+                    })
+                        .then(response => response.data.user)
+                        .then(user => {
+                            showNotification('Updated Account Profile');
+                        }).catch(error => {
+                            showNotification(error.message, 'error');
+                        });
+                }
+            );
+        }
     };
 
     render() {
@@ -238,33 +160,42 @@ class Account extends Component {
             newPassword,
             confirmNewPassword
         } = this.state;
+        const { classes, record, translate } = this.props;
         return ( 
             <Fragment>
             <SimpleForm handleSubmit={this.handleSubmit} validate={validateUserUpdate} toolbar={null} form="post-quick-create">
                     <TextInput
                         source="displayName"
+                        name="displayName"
                         validate={required()}
                         defaultValue={this.state.displayName}
+                        onChange={this.onChange}
                     />
                     <TextInput
                         type="email"
                         source="email"
+                        name="email"
                         validation={{ email: true }}
                         validate={required()}
                         defaultValue={this.state.email}
+                        onChange={this.onChange}
                     />
                     <TextInput
                         source="oldPassword"
+                        name="oldPassword"
                         label="resources.account.fields.oldPassword"
                         type="password"
+                        onChange={this.onChange}
                     />
                     <FormDataConsumer >
                         {({ formData, ...rest }) => formData.oldPassword &&
                             <TextInput
                                 source="newPassword"
+                                name="newPassword"
                                 type="password"
                                 {...rest}
                                 validate={required()}
+                                onChange={this.onChange}
                             />
                         }
                     </FormDataConsumer>
@@ -272,16 +203,18 @@ class Account extends Component {
                         {({ formData, ...rest }) => formData.oldPassword &&
                             <TextInput
                                 source="confirmNewPassword"
+                                name="confirmNewPassword"
                                 type="password"
                                 {...rest}
                                 validate={required()}
+                                onChange={this.onChange}
                             />
                         }
                     </FormDataConsumer>
             </SimpleForm>
             <SaveButton
                 onClick={this.handleSubmit}
-                width={'80'}
+                className={classes.button}
             />
             </Fragment>
         );
@@ -293,4 +226,19 @@ const mapStateToProps = state => ({
     recordLiveValues: getFormValues('post-quick-create')(state)
 });
 
-export default connect(mapStateToProps)(Account);
+const enhance = compose(
+    translate,
+    withStyles(styles),
+);
+
+Account.propTypes = {
+    push: PropTypes.func,
+    record: PropTypes.object,
+    showNotification: PropTypes.func,
+};
+
+// export default connect(mapStateToProps)(enhance(Account));
+export default connect(null, {
+    showNotification,
+    push,
+})(enhance(Account));
