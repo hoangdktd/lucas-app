@@ -86,8 +86,8 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
         <Responsive
             medium={
                 <Datagrid>
-                <TextField source="customerIdentity" />
-                <TextField source="saleId" />
+                <TextField source="customer.displayName" label="Customer Name"/>
+                <TextField source="sale.displayName" label="Sale Name"/>
                 <TextField source="channel" />
                 <NumberField source="priceOrder" options={{ style: 'currency', currency: 'VND' }}/>
                 <TextField source="infoOrderLink" />
