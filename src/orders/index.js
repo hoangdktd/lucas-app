@@ -168,11 +168,24 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     validate={required()}
                     hidden={true}
                 /> */}
-                <TextInput
+                <ReferenceInput
                     source="channel"
+                    reference="channels"
+                    label="Channel"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
-                />
+                >
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.name}`
+                        }
+                        options={{
+                            fullWidth: true,
+                        }}
+                    />
+                </ReferenceInput>
                 <DateInput
                     source="createDate"
                     fullWidth={true}
@@ -329,11 +342,24 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         }}
                     />
                 </ReferenceInput>
-                <TextInput
+                <ReferenceInput
                     source="channel"
+                    reference="channels"
+                    label="Channel"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
-                />
+                >
+                    <AutocompleteInput
+                        fullWidth={true}
+                        formClassName={classes.fullWidth}
+                        optionText={choice =>
+                            `${choice.name}`
+                        }
+                        options={{
+                            fullWidth: true,
+                        }}
+                    />
+                </ReferenceInput>
                 <DateInput
                     source="createDate"
                     fullWidth={true}

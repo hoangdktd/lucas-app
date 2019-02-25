@@ -83,7 +83,6 @@ export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
                 <TextField source="address" />
                 <TextField source="facebookLink" />
                 <TextField source="note" />
-                <TextField source="channel" />
                 <DateField source="birthday" type="date" />
                 <ColoredNumberField source="totalSpent" />
                 <EditButton />
@@ -140,11 +139,6 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                 />
                 <TextInput
                     source="note"
-                    formClassName={classes.email}
-                    fullWidth={true}
-                />
-                <TextInput
-                    source="channel"
                     formClassName={classes.email}
                     fullWidth={true}
                 />
@@ -244,11 +238,6 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                 />
                 <TextInput
                     source="note"
-                    fullWidth={true}
-                    formClassName={classes.email}
-                />
-                <TextInput
-                    source="channel"
                     fullWidth={true}
                     formClassName={classes.email}
                 />
