@@ -16,7 +16,7 @@ import { VisitorIcon } from './visitors';
 import { CommandIcon } from './commands';
 import { OrderIcon } from './orders';
 import { ProductIcon } from './products';
-import { CategoryIcon } from './categories';
+import { ChannelIcon } from './channels';
 import { ReviewIcon } from './reviews';
 import { UserIcon } from './users';
 import { userTypeRole } from './utilities/constant';
@@ -26,7 +26,7 @@ const items = [
     // { name: 'commands', icon: <CommandIcon /> },
     { name: 'order', icon: <OrderIcon />},
     // { name: 'products', icon: <ProductIcon /> },
-    { name: 'categories', icon: <CategoryIcon /> },
+    { name: 'channels', icon: <ChannelIcon /> },
     // { name: 'reviews', icon: <ReviewIcon /> },
     { name: 'user', icon: <UserIcon /> , permissions:  userTypeRole[0]},
     { name: 'account', icon: <UserIcon />},

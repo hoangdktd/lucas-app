@@ -148,6 +148,13 @@ export default {
                 products: 'Produits',
             },
         },
+        channels: {
+            name: 'Channels',
+            fields: {
+                products: 'Products',
+                name: 'Name',
+            },
+        },
         reviews: {
             name: 'Commentaire |||| Commentaires',
             fields: {

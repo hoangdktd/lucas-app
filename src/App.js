@@ -28,7 +28,7 @@ import {
     ProductEdit,
     ProductIcon,
 } from './products';
-import { CategoryList, CategoryEdit, CategoryIcon, CategoryCreate} from './categories';
+import { ChannelList, ChannelEdit, ChannelIcon, ChannelCreate} from './channels';
 import { ReviewList, ReviewEdit, ReviewIcon } from './reviews';
 import { UserList, UserEdit, UserCreate, UserIcon } from './users';
 import { AccountEdit, AccountIcon } from './account';
@@ -115,11 +115,11 @@ class App extends Component {
                     icon={ProductIcon}
                 />,
                 <Resource
-                    name="categories"
-                    list={CategoryList}
-                    edit={CategoryEdit}
-                    create={CategoryCreate}
-                    icon={CategoryIcon}
+                    name="channels"
+                    list={ChannelList}
+                    edit={ChannelEdit}
+                    create={ChannelCreate}
+                    icon={ChannelIcon}
                 />,
                 <Resource
                     name="reviews"
