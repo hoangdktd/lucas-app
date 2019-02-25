@@ -94,6 +94,7 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
                 <TextField source="typeDesigner" />
                 <TextField source="idPackage" />
                 <TextField source="packageOrder" />
+                <TextField source="status" />
                 <DateField source="createDate" type="date" />
                 <EditButton />
             </Datagrid>
@@ -142,6 +143,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     validate={required()}
                     value={userID}
                     defaultValue= {userID}
+                    filter={{ userRole: userTypeRole[1] }}
                 >
                     <AutocompleteInput
                         defaultValue= {userID}
@@ -242,6 +244,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                 />
                 <ReferenceInput
                     source="designerId"
+                    label="Designer Id"
                     reference="user"
                     fullWidth={true}
                     formClassName={classes.fullWidth}

@@ -30,7 +30,7 @@ class Dashboard extends Component {
                 dataProvider(GET_LIST, 'order', {
                     filter: { date_gte: aMonthAgo.toISOString() },
                     sort: { field: 'date', order: 'DESC' },
-                    pagination: { page: 1, perPage: 50 },
+                    pagination: { page: 1, perPage: 500 },
                 })
                     .then(response =>
                         response.data
