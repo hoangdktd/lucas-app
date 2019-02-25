@@ -309,7 +309,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
     <Edit {...props}>
         <TabbedForm>
             <FormTab label="resources.order.editOrder">
-                <ReferenceInput
+                {/* <ReferenceInput
                     source="customerIdentity"
                     reference="customers"
                     fullWidth={true}
@@ -326,7 +326,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                             fullWidth: true,
                         }}
                     />
-                </ReferenceInput>
+                </ReferenceInput> */}
                 <ReferenceInput
                     source="saleId"
                     reference="user"
