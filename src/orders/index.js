@@ -23,7 +23,8 @@ import {
     Pagination,
     AutocompleteInput,
     DisabledInput,
-    NumberField
+    NumberField,
+    ReferenceField
 } from 'react-admin';
 import { FormDataConsumer } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
@@ -86,8 +87,12 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
         <Responsive
             medium={
                 <Datagrid>
-                <TextField source="customer.displayName" label="Customer Name"/>
-                <TextField source="sale.displayName" label="Sale Name"/>
+                <ReferenceField label="Customer Name" source="customerIdentity" reference="customers">
+                    <TextField source="displayName" />
+                </ReferenceField>
+                <ReferenceField label="Saler Name" source="saleId" reference="user">
+                    <TextField source="displayName" />
+                </ReferenceField>
                 <TextField source="channel" />
                 <NumberField source="priceOrder" options={{ style: 'currency', currency: 'VND' }}/>
                 <TextField source="infoOrderLink" />
