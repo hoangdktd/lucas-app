@@ -10,7 +10,6 @@ export default (type, params) => {
         // localStorage.setItem('username', username);
         // accept all username/password combinations
         // return Promise.resolve();
-console.log(params);
         const { username, password } = params;
         const request = new Request(APIServer + AuthApiUrl.API_AUTH_LOGIN, {
             method: 'POST',
@@ -23,9 +22,11 @@ console.log(params);
         return fetch(request)
             .then(response => {
                 if (response.status < 200 || response.status >= 300) {
-                    console.log(response.msg);
-                    console.log(response.json().msg);
-                    throw new Error(response.statusText);
+                    if (response.status === 400) {
+                        throw new Error('Wrong username or password, please try again.');
+                    } else {
+                        throw new Error(response.statusText);
+                    }
                 }
                 return response.json();
             })
