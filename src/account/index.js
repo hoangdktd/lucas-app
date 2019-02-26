@@ -129,14 +129,14 @@ class Account extends Component {
                     });
             }
         );
-        const userId= localStorage.getItem('userId');
+        const userId= localStorage.getItem('id');
         if (this.state.oldPassword && this.state.newPassword && this.state.oldPassword !== ''  && this.state.newPassword !== '' ) {
             dataProviderFactory(process.env.REACT_APP_DATA_PROVIDER).then(
                 dataProvider => {
                     dataProvider(UPDATE, 'user/change-password', {
                         id: id,
                         data: {
-                            userId: userId,
+                            id: userId,
                             password: this.state.oldPassword,
                             newPassword: this.state.newPassword
                         }

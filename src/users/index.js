@@ -53,7 +53,7 @@ const QuickFilter = translate(
 export const UserFilter = props => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
-        <SearchInput source="userId" label="resources.user.fields.userid"/>
+        <SearchInput source="id" label="resources.user.fields.id"/>
         <SearchInput
             label="resources.user.fields.username"
             source="displayName"
@@ -88,7 +88,7 @@ export const UserList = withStyles(listStyles)(({ permissions, classes, ...props
             medium={
             <Datagrid>
                 <TextField source="displayName" />
-                <TextField source="userId" />
+                <TextField source="id" />
                 <TextField source="email" />
                 <TextField source="userType" />
                 <DateField source="createdAt" type="date" />
@@ -125,7 +125,7 @@ export const UserCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     validate={required()}
                 />
                 <TextInput
-                    source="userId"
+                    source="id"
                     label="User ID"
                     validate={required()}
                 />
@@ -178,7 +178,7 @@ export const UserEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     validate={required()}
                 />
                 <TextInput
-                    source="userId"
+                    source="id"
                     label="User ID"
                     validate={required()}
                 />

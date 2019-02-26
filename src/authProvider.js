@@ -14,7 +14,7 @@ export default (type, params) => {
         const request = new Request(APIServer + AuthApiUrl.API_AUTH_LOGIN, {
             method: 'POST',
             body: JSON.stringify({
-                'userId': username,
+                'id': username,
                 'password': password
             }),
             headers: new Headers({'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json' }),
@@ -36,7 +36,6 @@ export default (type, params) => {
                     localStorage.setItem('token', token);
                     localStorage.setItem('role', decodedToken.role);
                     localStorage.setItem('username', decodedToken.username);
-                    localStorage.setItem('userId', user.userId);
                     localStorage.setItem('id', user.id);
                 }
             });

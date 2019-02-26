@@ -114,9 +114,8 @@ const editStyles = {
     fullWidth: { maxWidth: 544 },
     hidden: {overflow: 'hidden'},
 };
-const userID= localStorage.getItem('id');
-const user_ID= localStorage.getItem('userId');
-const postDefaultValue = { saleId: userID };
+const id= localStorage.getItem('id');
+const postDefaultValue = { saleId: id };
 export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
     <Create {...props}>
         <TabbedForm>
@@ -146,21 +145,21 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                     validate={required()}
-                    value={userID}
-                    defaultValue= {userID}
+                    value={id}
+                    defaultValue= {id}
                     filter={{ userRole: userTypeRole[1] }}
                 >
                     <AutocompleteInput
-                        defaultValue= {userID}
+                        defaultValue= {id}
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
-                            `${choice.userId}`
+                            `${choice.id}`
                         }
                         options={{
                             fullWidth: true,
                         }}
-                        value={userID}
+                        value={id}
                     />
                 </ReferenceInput>
                 {/* <DisabledInput
@@ -168,7 +167,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     label="Sale ID"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
-                    defaultValue= {userID}
+                    defaultValue= {id}
                     disable= {true}
                     validate={required()}
                     hidden={true}
@@ -272,7 +271,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
-                            `${choice.userId}`
+                            `${choice.id}`
                         }
                         options={{
                             fullWidth: true,
@@ -340,7 +339,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
-                            `${choice.userId}`
+                            `${choice.id}`
                         }
                         options={{
                             fullWidth: true,
@@ -445,7 +444,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
-                            `${choice.userId}`
+                            `${choice.id}`
                         }
                         options={{
                             fullWidth: true,
