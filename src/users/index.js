@@ -121,13 +121,13 @@ export const UserCreate = withStyles(editStyles)(({ classes, ...props }) => (
         <TabbedForm>
             <FormTab label="resources.customers.tabs.identity">
                 <TextInput
-                    source="displayName"
-                    formClassName={classes.displayName}
+                    source="id"
+                    label="User ID"
                     validate={required()}
                 />
                 <TextInput
-                    source="id"
-                    label="User ID"
+                    source="displayName"
+                    formClassName={classes.displayName}
                     validate={required()}
                 />
                 <SelectInput
@@ -173,11 +173,6 @@ export const UserEdit = withStyles(editStyles)(({ permissions, classes, ...props
     <Edit title={<VisitorTitle />} {...props}>
         <TabbedForm>
             <FormTab label="resources.customers.tabs.identity">
-                <TextInput
-                    source="displayName"
-                    formClassName={classes.displayName}
-                    validate={required()}
-                />
                 {permissions === userTypeRole[0] &&
                 <TextInput
                     source="id"
@@ -186,7 +181,11 @@ export const UserEdit = withStyles(editStyles)(({ permissions, classes, ...props
                 />}
                 {permissions !== userTypeRole[0] &&
                 <DisabledInput source="id" label="User ID"/>}
-               
+                <TextInput
+                    source="displayName"
+                    formClassName={classes.displayName}
+                    validate={required()}
+                />
                 <SelectInput
                     source="userRole"
                     choices={[
