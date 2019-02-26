@@ -87,10 +87,10 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
             medium={
                 <Datagrid>
                 <ReferenceField label="Customer Name" source="customerId" reference="customers">
-                    <TextField source="displayName" />
+                    <TextField source="id" />
                 </ReferenceField>
                 <ReferenceField label="Saler Name" source="saleId" reference="user">
-                    <TextField source="displayName" />
+                    <TextField source="id" />
                 </ReferenceField>
                 <TextField source="channelId" label="resources.orders.fields.channel"/>
                 <NumberField source="priceOrder" options={{ style: 'currency', currency: 'VND' }}/>

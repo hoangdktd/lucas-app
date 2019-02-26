@@ -27,7 +27,7 @@ const listStyles = {
 export const ChannelList = withStyles(listStyles)(({ classes, ...props }) => (
     <List {...props} sort={{ field: 'id', order: 'ASC' }}>
         <Datagrid>
-            <TextField source="id" className={classes.id} />
+            <TextField source="id" className={classes.id} label="resources.channels.fields.channelId" />
             <EditButton />
         </Datagrid>
     </List>
@@ -44,7 +44,7 @@ const ChannelTitle = translate(({ record, translate }) => (
 export const ChannelEdit = ({ permissions, ...props }) => (
     <Edit title={<ChannelTitle />} {...props}>
         <SimpleForm>
-            {permissions === userTypeRole[0] && <TextInput source="id" /> }
+            {permissions === userTypeRole[0] && <TextInput source="id" label="resources.channels.fields.channelId"/> }
         </SimpleForm>
     </Edit>
 );
@@ -52,7 +52,7 @@ export const ChannelEdit = ({ permissions, ...props }) => (
 export const ChannelCreate = ({ classes, ...props }) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput source="id" />
+            <TextInput source="id" label="resources.channels.fields.channelId"/>
         </SimpleForm>
     </Create>
 );

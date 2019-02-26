@@ -141,6 +141,7 @@ export default {
             fields: {
                 products: 'Products',
                 name: 'Name',
+                channelId: 'Channel ID'
             },
         },
         reviews: {
