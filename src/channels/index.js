@@ -17,7 +17,7 @@ import Icon from '@material-ui/icons/Bookmark';
 
 import ThumbnailField from '../products/ThumbnailField';
 import ProductRefField from '../products/ProductRefField';
-
+import { userTypeRole } from '../utilities/constant';
 export const ChannelIcon = Icon;
 
 const listStyles = {
@@ -41,10 +41,10 @@ const ChannelTitle = translate(({ record, translate }) => (
     </span>
 ));
 
-export const ChannelEdit = props => (
+export const ChannelEdit = ({ permissions, ...props }) => (
     <Edit title={<ChannelTitle />} {...props}>
         <SimpleForm>
-            <TextInput source="id" />
+            {permissions === userTypeRole[0] && <TextInput source="id" /> }
         </SimpleForm>
     </Edit>
 );

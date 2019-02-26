@@ -117,7 +117,7 @@ class App extends Component {
                 <Resource
                     name="channels"
                     list={ChannelList}
-                    edit={ChannelEdit}
+                    edit={permissions === userTypeRole[0] ? ChannelEdit : null}
                     create={ChannelCreate}
                     icon={ChannelIcon}
                 />,

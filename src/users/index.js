@@ -22,6 +22,7 @@ import {
     SearchInput,
     DateInput,
     TabbedForm,
+    DisabledInput,
     regex
 } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
@@ -168,7 +169,7 @@ export const UserCreate = withStyles(editStyles)(({ classes, ...props }) => (
 const VisitorTitle = ({ record }) =>
 record ? <FullNameField record={record} size={32} /> : null;
 
-export const UserEdit = withStyles(editStyles)(({ classes, ...props }) => (
+export const UserEdit = withStyles(editStyles)(({ permissions, classes, ...props }) => (
     <Edit title={<VisitorTitle />} {...props}>
         <TabbedForm>
             <FormTab label="resources.customers.tabs.identity">
@@ -177,11 +178,15 @@ export const UserEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.displayName}
                     validate={required()}
                 />
+                {permissions === userTypeRole[0] &&
                 <TextInput
                     source="id"
                     label="User ID"
                     validate={required()}
-                />
+                />}
+                {permissions !== userTypeRole[0] &&
+                <DisabledInput source="id" label="User ID"/>}
+               
                 <SelectInput
                     source="userRole"
                     choices={[
