@@ -10,6 +10,7 @@ import {
     DELETE_MANY,
     fetchUtils,
 } from 'admin-on-rest';
+import {translate } from 'react-admin';
 import decodeJwt from 'jwt-decode';
 const { queryParameters } = fetchUtils;
 const { fetchJson } = fetchUtils;
@@ -59,6 +60,7 @@ export default (apiUrl, httpClient = fetchJson) => {
                 break;
             }
             case GET_ONE:
+            console.log(params);
                 url = `${apiUrl}/${resource}/${params.id}`;
                 break;
             case GET_MANY_REFERENCE: {
@@ -150,11 +152,18 @@ export default (apiUrl, httpClient = fetchJson) => {
      */
     return (type, resource, params) => {
         // json-server doesn't handle WHERE IN requests, so we fallback to calling GET_ONE n times instead
-        const token = localStorage.getItem('token');
-        // const decodedToken = decodeJwt(token);
+        // const token = localStorage.getItem('token');
+        // let decodedToken = '';
+        // if (token) {
+        //     decodedToken = decodeJwt(token);
+        // }
         // const dateNow = new Date();
         // if (decodedToken.exp < (dateNow.getTime() / 1000)){
-        //     // alert('Session is expired');
+        //     console.log('Updated Account Profile');
+        //     console.log(translate('resources.commons.tokenExpired'));
+        //     alert(translate(
+        //         'resources.commons.tokenExpired'
+        //     ));
         // }
         if (type === GET_MANY) {
             return Promise.all(params.ids.map(id => httpClient(`${apiUrl}/${resource}/${id}`)))

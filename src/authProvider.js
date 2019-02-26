@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK, AUTH_ERROR, AUTH_GET_PERMISSIONS  } from 'react-admin';
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK, AUTH_ERROR, AUTH_GET_PERMISSIONS, showNotification } from 'react-admin';
 import decodeJwt from 'jwt-decode';
 import { APIServer } from './utilities/constant';
 import * as APIUrl from './utilities/APIUrl';
@@ -47,10 +47,17 @@ export default (type, params) => {
         return Promise.resolve();
     }
     if (type === AUTH_ERROR) {
+        const status  = params.status;
+        if (status === 401 || status === 403) {
+            alert('Session is expired');
+            localStorage.removeItem('token');
+            return Promise.reject();
+        }
         return Promise.resolve();
     }
     if (type === AUTH_GET_PERMISSIONS) {
         const role = localStorage.getItem('role');
+        console.log(role);
         return role ? Promise.resolve(role) : Promise.reject();
     }
     if (type === AUTH_CHECK) {

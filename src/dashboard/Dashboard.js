@@ -41,6 +41,9 @@ class Dashboard extends Component {
                                         stats.revenue += order.priceOrder;
                                         stats.nbNewOrders++;
                                     }
+                                    if (order.status === orderStatusEnum[1]) {
+                                        stats.pendingRevenue += order.priceOrder;
+                                    }
                                     if (order.status === orderStatusEnum[0] || order.status === orderStatusEnum[1]) {
                                         stats.pendingOrders.push(order);
                                     }
@@ -48,6 +51,7 @@ class Dashboard extends Component {
                                 },
                                 {
                                     revenue: 0,
+                                    pendingRevenue: 0,
                                     nbNewOrders: 0,
                                     pendingOrders: [],
                                 }

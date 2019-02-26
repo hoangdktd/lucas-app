@@ -80,10 +80,9 @@ export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
                 <Datagrid>
                 <TextField source="displayName" />
                 <TextField source="customerIdentity" />
-                <TextField source="address" />
+                <TextField source="email" />
                 <TextField source="facebookLink" />
                 <TextField source="note" />
-                <DateField source="birthday" type="date" />
                 <ColoredNumberField source="totalSpent" />
                 <EditButton />
             </Datagrid>
@@ -142,16 +141,14 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.email}
                     fullWidth={true}
                 />
-                <DateInput source="birthday" />
+                {/* <DateInput source="birthday" /> */}
             </FormTab>
-            <FormTab label="resources.customers.tabs.address" path="address">
+            {/* <FormTab label="resources.customers.tabs.address" path="address">
                 <LongTextInput
                     source="address"
                     formClassName={classes.address}
                 />
-                {/* <TextInput source="zipcode" formClassName={classes.zipcode} />
-                <TextInput source="city" formClassName={classes.city} /> */}
-            </FormTab>
+            </FormTab> */}
             {/* <FormTab label="resources.customers.tabs.orders" path="orders">
                 <ReferenceManyField
                     addLabel={false}
@@ -241,14 +238,14 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     fullWidth={true}
                     formClassName={classes.email}
                 />
-                <DateInput source="birthday" />
+                {/* <DateInput source="birthday" /> */}
             </FormTab>
-            <FormTab label="resources.customers.tabs.address" path="address">
+            {/* <FormTab label="resources.customers.tabs.address" path="address">
                 <LongTextInput
                     source="address"
                     formClassName={classes.address}
                 />
-            </FormTab>
+            </FormTab> */}
         </TabbedForm>
     </Create>
 ));

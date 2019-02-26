@@ -213,5 +213,6 @@ export default {
         roleAdmin: 'Admin',
         roleUser: 'User',
         roleManager: 'Manager',
+        tokenExpired: 'Session is expired',
     }
 };

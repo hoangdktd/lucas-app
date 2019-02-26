@@ -224,5 +224,6 @@ export default {
         roleAdmin: 'Admin(fr)',
         roleUser: 'User(fr)',
         roleManager: 'Manager(fr)',
+        tokenExpired: 'Session is expired (fr)',
     }
 };
