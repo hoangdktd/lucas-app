@@ -21,13 +21,13 @@ import ProductRefField from '../products/ProductRefField';
 export const ChannelIcon = Icon;
 
 const listStyles = {
-    name: { padding: '0 12px 0 25px' },
+    id: { padding: '0 12px 0 25px' },
 };
 
 export const ChannelList = withStyles(listStyles)(({ classes, ...props }) => (
-    <List {...props} sort={{ field: 'name', order: 'ASC' }}>
+    <List {...props} sort={{ field: 'id', order: 'ASC' }}>
         <Datagrid>
-            <TextField source="name" className={classes.name} />
+            <TextField source="id" className={classes.id} />
             <EditButton />
         </Datagrid>
     </List>
@@ -35,8 +35,8 @@ export const ChannelList = withStyles(listStyles)(({ classes, ...props }) => (
 
 const ChannelTitle = translate(({ record, translate }) => (
     <span>
-        {translate('resources.channels.name', { smart_count: 1 })} &quot;{
-            record.name
+        {translate('resources.channels.id', { smart_count: 1 })} &quot;{
+            record.id
         }&quot;
     </span>
 ));
@@ -44,7 +44,7 @@ const ChannelTitle = translate(({ record, translate }) => (
 export const ChannelEdit = props => (
     <Edit title={<ChannelTitle />} {...props}>
         <SimpleForm>
-            <TextInput source="name" />
+            <TextInput source="id" />
         </SimpleForm>
     </Edit>
 );
@@ -52,7 +52,7 @@ export const ChannelEdit = props => (
 export const ChannelCreate = ({ classes, ...props }) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput source="name" />
+            <TextInput source="id" />
         </SimpleForm>
     </Create>
 );

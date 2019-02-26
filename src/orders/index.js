@@ -183,7 +183,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
-                            `${choice.name}`
+                            `${choice.id}`
                         }
                         options={{
                             fullWidth: true,
@@ -357,7 +357,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
-                            `${choice.name}`
+                            `${choice.id}`
                         }
                         options={{
                             fullWidth: true,
