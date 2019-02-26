@@ -86,12 +86,14 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
         <Responsive
             medium={
                 <Datagrid>
-                <ReferenceField label="Customer Name" source="customerId" reference="customers">
+                {/* <ReferenceField label="Customer Name" source="customerId" reference="customers">
                     <TextField source="id" />
                 </ReferenceField>
                 <ReferenceField label="Saler Name" source="saleId" reference="user">
                     <TextField source="id" />
-                </ReferenceField>
+                </ReferenceField> */}
+                <TextField source="customerId" label="resources.orders.fields.customerId"/>
+                <TextField source="saleId" label="resources.orders.fields.saleId"/>
                 <TextField source="channelId" label="resources.orders.fields.channel"/>
                 <NumberField source="priceOrder" options={{ style: 'currency', currency: 'VND' }}/>
                 <TextField source="infoOrderLink" />
