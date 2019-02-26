@@ -115,11 +115,6 @@ export const VisitorEdit = withStyles(editStyles)(({ permissions, classes, ...pr
     <Edit title={<VisitorTitle />} {...props}>
         <TabbedForm>
             <FormTab label="resources.customers.tabs.identity">
-                <TextInput
-                    source="displayName"
-                    formClassName={classes.displayName}
-                    validate={required()}
-                />
                 {permissions === userTypeRole[0] &&
                 <TextInput
                     source="id"
@@ -128,6 +123,11 @@ export const VisitorEdit = withStyles(editStyles)(({ permissions, classes, ...pr
                 />}
                 {permissions !== userTypeRole[0] &&
                 <DisabledInput source="id" label="Customer ID"/>}
+                <TextInput
+                    source="displayName"
+                    formClassName={classes.displayName}
+                    validate={required()}
+                />
                 <TextInput
                     type="email"
                     source="email"
@@ -217,13 +217,13 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
         <TabbedForm>
             <FormTab label="resources.customers.tabs.identity">
                 <TextInput
-                    source="displayName"
-                    formClassName={classes.displayName}
+                    source="id"
+                    label="Customer ID"
                     validate={required()}
                 />
                 <TextInput
-                    source="id"
-                    label="Customer ID"
+                    source="displayName"
+                    formClassName={classes.displayName}
                     validate={required()}
                 />
                 <TextInput

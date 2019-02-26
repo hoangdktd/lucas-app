@@ -34,6 +34,7 @@ import {
     regex,
     FormDataConsumer,
     SaveButton,
+    DisabledInput,
     showNotification 
 } from 'react-admin';
 import dataProviderFactory from '../dataProvider';
@@ -164,6 +165,7 @@ class Account extends Component {
         return ( 
             <Fragment>
             <SimpleForm handleSubmit={this.handleSubmit} validate={validateUserUpdate} toolbar={null} form="post-quick-create">
+                    <DisabledInput source="id" label="User ID" defaultValue={localStorage.getItem('id')}/>
                     <TextInput
                         source="displayName"
                         name="displayName"
