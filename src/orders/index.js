@@ -115,7 +115,7 @@ const editStyles = {
 };
 const id= localStorage.getItem('id');
 const postDefaultValue = { saleId: id };
-export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
+export const OrderCreate = withStyles(editStyles)(({ permissions, classes, ...props }) => (
     <Create {...props}>
         <TabbedForm>
             <FormTab label="resources.orders.createOrder" formClassName={classes.fullWidth} defaultValue={postDefaultValue}>
@@ -137,6 +137,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         }}
                     />
                 </ReferenceInput>
+                {permissions === userTypeRole[0] &&
                 <ReferenceInput
                     source="saleId"
                     reference="user"
@@ -144,12 +145,9 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                     validate={required()}
-                    value={id}
-                    defaultValue= {id}
                     filter={{ userRole: userTypeRole[1] }}
                 >
                     <AutocompleteInput
-                        defaultValue= {id}
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
@@ -158,9 +156,10 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         options={{
                             fullWidth: true,
                         }}
-                        value={id}
                     />
-                </ReferenceInput>
+                </ReferenceInput>}
+                {permissions !== userTypeRole[0] &&
+                <DisabledInput source="saleId" label="Sale ID" defaultValue= {id}/>}
                 {/* <DisabledInput
                     source="saleId"
                     label="Sale ID"
@@ -303,7 +302,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
 ));
 
 
-export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
+export const OrderEdit = withStyles(editStyles)(({ permissions,classes, ...props }) => (
     <Edit {...props}>
         <TabbedForm>
             <FormTab label="resources.orders.editOrder">
@@ -325,14 +324,15 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         }}
                     />
                 </ReferenceInput> */}
+                {permissions === userTypeRole[0] &&
                 <ReferenceInput
                     source="saleId"
                     reference="user"
                     label="Sale ID"
-                    filter={{ userRole: userTypeRole[1] }}
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                     validate={required()}
+                    filter={{ userRole: userTypeRole[1] }}
                 >
                     <AutocompleteInput
                         fullWidth={true}
@@ -344,7 +344,9 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                             fullWidth: true,
                         }}
                     />
-                </ReferenceInput>
+                </ReferenceInput>}
+                {permissions !== userTypeRole[0] &&
+                <DisabledInput source="saleId" label="Sale ID"/>}
                 <ReferenceInput
                     source="channelId"
                     reference="channels"
