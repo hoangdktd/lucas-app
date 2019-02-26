@@ -28,7 +28,7 @@ const styles = theme => ({
         minHeight: '100vh',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        background: 'url(https://source.unsplash.com/random/1600x900)',
+        background: 'url(./lucas_background.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     },
