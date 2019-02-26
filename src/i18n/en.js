@@ -78,7 +78,7 @@ export default {
                 returned: 'Returned',
             },
         },
-        order: {
+        orders: {
             name: 'Order |||| Orders',
             fields: {
                 basket: {

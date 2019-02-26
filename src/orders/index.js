@@ -57,13 +57,12 @@ const QuickFilter = translate(
 export const OrderFilter = props => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
-        <SearchInput source="customerIdentity" label="resources.order.fields.customer_id"/>
-        <SearchInput source="idPackage" label="resources.order.fields.idPackage"/>
-        <SearchInput source="channel" label="resources.order.fields.channel"/>
-        <SearchInput source="saleId" label="resources.order.fields.saleId"/>
-        <SearchInput source="idPackage" label="resources.order.fields.idPackage"/>
+        <SearchInput source="customerId" label="resources.orders.fields.customer_id"/>
+        <SearchInput source="channelId" label="resources.orders.fields.channel"/>
+        <SearchInput source="saleId" label="resources.orders.fields.saleId"/>
+        <SearchInput source="idPackage" label="resources.orders.fields.idPackage"/>
         <SearchInput
-            label="resources.order.fields.infoOrderLink"
+            label="resources.orders.fields.infoOrderLink"
             source="infoOrderLink"
         />
         <DateInput source="startDate" />
@@ -87,13 +86,13 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
         <Responsive
             medium={
                 <Datagrid>
-                <ReferenceField label="Customer Name" source="customerIdentity" reference="customers">
+                <ReferenceField label="Customer Name" source="customerId" reference="customers">
                     <TextField source="displayName" />
                 </ReferenceField>
                 <ReferenceField label="Saler Name" source="saleId" reference="user">
                     <TextField source="displayName" />
                 </ReferenceField>
-                <TextField source="channel" />
+                <TextField source="channelId" label="resources.orders.fields.channel"/>
                 <NumberField source="priceOrder" options={{ style: 'currency', currency: 'VND' }}/>
                 <TextField source="infoOrderLink" />
                 <TextField source="typeDesigner" />
@@ -119,9 +118,9 @@ const postDefaultValue = { saleId: id };
 export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
     <Create {...props}>
         <TabbedForm>
-            <FormTab label="resources.order.createOrder" formClassName={classes.fullWidth} defaultValue={postDefaultValue}>
+            <FormTab label="resources.orders.createOrder" formClassName={classes.fullWidth} defaultValue={postDefaultValue}>
                 <ReferenceInput
-                    source="customerIdentity"
+                    source="customerId"
                     reference="customers"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
@@ -131,7 +130,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
-                            `${choice.customerIdentity}`
+                            `${choice.id}`
                         }
                         options={{
                             fullWidth: true,
@@ -173,7 +172,7 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     hidden={true}
                 /> */}
                 <ReferenceInput
-                    source="channel"
+                    source="channelId"
                     reference="channels"
                     label="Channel"
                     fullWidth={true}
@@ -307,9 +306,9 @@ export const OrderCreate = withStyles(editStyles)(({ classes, ...props }) => (
 export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
     <Edit {...props}>
         <TabbedForm>
-            <FormTab label="resources.order.editOrder">
+            <FormTab label="resources.orders.editOrder">
                 {/* <ReferenceInput
-                    source="customerIdentity"
+                    source="customerId"
                     reference="customers"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
@@ -319,7 +318,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                         fullWidth={true}
                         formClassName={classes.fullWidth}
                         optionText={choice =>
-                            `${choice.customerIdentity}`
+                            `${choice.id}`
                         }
                         options={{
                             fullWidth: true,
@@ -347,7 +346,7 @@ export const OrderEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     />
                 </ReferenceInput>
                 <ReferenceInput
-                    source="channel"
+                    source="channelId"
                     reference="channels"
                     label="Channel"
                     fullWidth={true}

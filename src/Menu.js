@@ -24,7 +24,7 @@ const items = [
     { name: 'customers', icon: <VisitorIcon /> },
     // { name: 'segments', icon: <LabelIcon /> },
     // { name: 'commands', icon: <CommandIcon /> },
-    { name: 'order', icon: <OrderIcon />},
+    { name: 'orders', icon: <OrderIcon />},
     // { name: 'products', icon: <ProductIcon /> },
     { name: 'channels', icon: <ChannelIcon /> },
     // { name: 'reviews', icon: <ReviewIcon /> },

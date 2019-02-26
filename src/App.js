@@ -100,7 +100,7 @@ class App extends Component {
                     options={{ label: 'Orders' }}
                 />,
                 <Resource
-                    name="order"
+                    name="orders"
                     list={OrderList}
                     edit={OrderEdit}
                     create={OrderCreate}

@@ -20,6 +20,7 @@ import {
     TextField,
     TextInput,
     required,
+    DisabledInput,
     Pagination
 } from 'react-admin';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -34,14 +35,14 @@ import SegmentInput from './SegmentInput';
 import SegmentsInput from './SegmentsInput';
 import CustomerLinkField from './CustomerLinkField';
 import MobileGrid from './MobileGrid';
-
+import { userTypeRole } from '../utilities/constant';
 export const VisitorIcon = Icon;
 
 const VisitorFilter = props => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
         <SearchInput source="displayName" />
-        <SearchInput source="customerIdentity" />
+        <SearchInput source="id" label="Customer ID"/>
     </Filter>
 );
 
@@ -79,7 +80,7 @@ export const VisitorList = withStyles(listStyles)(({ classes, ...props }) => (
             medium={
                 <Datagrid>
                 <TextField source="displayName" />
-                <TextField source="customerIdentity" />
+                <TextField source="id" label="Customer ID"/>
                 <TextField source="email" />
                 <TextField source="facebookLink" />
                 <TextField source="note" />
@@ -110,7 +111,7 @@ const editStyles = {
     },
 };
 
-export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
+export const VisitorEdit = withStyles(editStyles)(({ permissions, classes, ...props }) => (
     <Edit title={<VisitorTitle />} {...props}>
         <TabbedForm>
             <FormTab label="resources.customers.tabs.identity">
@@ -119,10 +120,14 @@ export const VisitorEdit = withStyles(editStyles)(({ classes, ...props }) => (
                     formClassName={classes.displayName}
                     validate={required()}
                 />
+                {permissions === userTypeRole[0] &&
                 <TextInput
-                    source="customerIdentity"
+                    source="id"
+                    label="Customer ID"
                     validate={required()}
-                />
+                />}
+                {permissions !== userTypeRole[0] &&
+                <DisabledInput source="id" label="Customer ID"/>}
                 <TextInput
                     type="email"
                     source="email"
@@ -217,7 +222,8 @@ export const VisitorCreate = withStyles(editStyles)(({ classes, ...props }) => (
                     validate={required()}
                 />
                 <TextInput
-                    source="customerIdentity"
+                    source="id"
+                    label="Customer ID"
                     validate={required()}
                 />
                 <TextInput

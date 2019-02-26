@@ -91,7 +91,7 @@ export default {
                 total_gte: 'Montant minimum',
             },
         },
-        order: {
+        orders: {
             name: 'Order |||| Orders',
             fields: {
                 basket: {
