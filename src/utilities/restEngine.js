@@ -100,7 +100,7 @@ export default (apiUrl, httpClient = fetchJson) => {
             case 'DELETE_MANY':
                 url = `${apiUrl}/${resource}`;
                 options.method = 'DELETE';
-                options.body = JSON.stringify(params.data);
+                options.body = JSON.stringify(params.ids);
                 console.log('DELETE_MANY : ' + url);
                 break;
             default:
