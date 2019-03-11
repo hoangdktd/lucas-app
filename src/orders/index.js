@@ -35,10 +35,6 @@ import { orderStatusEnum } from '../utilities/constant';
 import { typeDesignerEnum } from '../utilities/constant';
 import { paymentStatusEnum } from '../utilities/constant';
 import { userTypeRole } from '../utilities/constant';
-// import CustomerReferenceField from '../visitors/CustomerReferenceField';
-// import StarRatingField from '../reviews/StarRatingField';
-// import GridList from './GridList';
-// import Poster from './Poster';
 
 export const OrderIcon = Icon;
 
@@ -147,7 +143,7 @@ export const OrderCreate = withStyles(editStyles)(({ permissions, classes, ...pr
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                     validate={required()}
-                    filter={{ userRole: userTypeRole[1] }}
+                    filter={{ userRole: [userTypeRole[0], userTypeRole[1]] }}
                 >
                     <AutocompleteInput
                         fullWidth={true}
@@ -265,7 +261,7 @@ export const OrderCreate = withStyles(editStyles)(({ permissions, classes, ...pr
                     reference="user"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
-                    filter={{ userRole: userTypeRole[3] }}
+                    filter={{ userRole: [userTypeRole[0], userTypeRole[3]] }}
                 >
                     <AutocompleteInput
                         fullWidth={true}
@@ -284,7 +280,7 @@ export const OrderCreate = withStyles(editStyles)(({ permissions, classes, ...pr
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                 />
-                <FormDataConsumer 
+                <FormDataConsumer
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                 >
@@ -334,7 +330,7 @@ export const OrderEdit = withStyles(editStyles)(({ permissions,classes, ...props
                     fullWidth={true}
                     formClassName={classes.fullWidth}
                     validate={required()}
-                    filter={{ userRole: userTypeRole[1] }}
+                    filter={{ userRole: [userTypeRole[0], userTypeRole[1]] }}
                 >
                     <AutocompleteInput
                         fullWidth={true}
@@ -440,7 +436,7 @@ export const OrderEdit = withStyles(editStyles)(({ permissions,classes, ...props
                     source="designerId"
                     reference="user"
                     fullWidth={true}
-                    filter={{ userRole: userTypeRole[3] }}
+                    filter={{ userRole: [userTypeRole[0], userTypeRole[3]] }}
                     formClassName={classes.fullWidth}
                 >
                     <AutocompleteInput
