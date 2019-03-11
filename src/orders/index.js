@@ -94,6 +94,7 @@ export const OrderList = withStyles(listStyles)(({ classes, ...props }) => (
                 <NumberField source="priceOrder" options={{ style: 'currency', currency: 'VND' }}/>
                 <TextField source="infoOrderLink" />
                 <TextField source="typeDesigner" />
+                <TextField source="designerId" label="resources.orders.fields.designerId" />
                 <TextField source="idPackage" />
                 <TextField source="packageOrder" />
                 <TextField source="status" />
@@ -257,7 +258,7 @@ export const OrderCreate = withStyles(editStyles)(({ permissions, classes, ...pr
                 />
                 <ReferenceInput
                     source="designerId"
-                    label="Designer Id"
+                    label="resources.orders.fields.designerId"
                     reference="user"
                     fullWidth={true}
                     formClassName={classes.fullWidth}
@@ -434,6 +435,7 @@ export const OrderEdit = withStyles(editStyles)(({ permissions,classes, ...props
                 />
                 <ReferenceInput
                     source="designerId"
+                    label="resources.orders.fields.designerId"
                     reference="user"
                     fullWidth={true}
                     filter={{ userRole: [userTypeRole[0], userTypeRole[3]] }}

@@ -92,6 +92,7 @@ export default {
                 },
                 customer_id: 'Customer',
                 customerId: 'Customer',
+                designerId: 'Designer Id',
                 date_gte: 'Passed Since',
                 date_lte: 'Passed Before',
                 total_gte: 'Min amount',
